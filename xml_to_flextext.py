@@ -18,7 +18,8 @@ def transform_to_flextext_dom(xml_root_in, ws_vernacular, ws_gloss, ws_freetrans
         ws_freetrans (str): Writing system code for the free translation (e.g., 'en').
 
     Returns:
-        xml.etree.ElementTree.Element: The root <document> element (FLExText object).
+        tuple: (xml.etree.ElementTree.Element, int) The root <document> element (FLExText object) 
+               and the count of missing free translations.
     """
     
     # Nested Helper Function (Now scoped locally)
@@ -41,6 +42,8 @@ def transform_to_flextext_dom(xml_root_in, ws_vernacular, ws_gloss, ws_freetrans
         
         return languages
 
+    # Initialize counter for debugging output
+    missing_freetrans_count = 0
     
     # 1. Create the outermost root: <document>
     document_root = Element('document')
@@ -72,28 +75,51 @@ def transform_to_flextext_dom(xml_root_in, ws_vernacular, ws_gloss, ws_freetrans
             
             phrase_element = SubElement(phrases_container, 'phrase')
 
-            # 4.1. Add Free Translation (<item type="gls"> inside <phrase>)
+            # Get Vernacular and Gloss lines first, as we need the word data
+            vern_line = line.find('./il-lines/vernacular-line')
+            gloss_line = line.find('./il-lines/gloss-line')
+            
+            if vern_line is None or gloss_line is None:
+                # Skip creation if no interlinear data exists
+                continue 
+
+            vern_words = vern_line.findall('./wrd')
+            glosses = gloss_line.findall('./gls')
+            
+            
+            # --- STEP 4.1: Add Vernacular Sentence (type="txt") - SHOULD BE FIRST ---
+            # Reconstruct the full sentence by joining the text of all vernacular words.
+            full_vernacular_text = " ".join(
+                wrd.text for wrd in vern_words if wrd.text is not None and wrd.text.strip() != ""
+            )
+            
+            if full_vernacular_text:
+                vern_item = SubElement(phrase_element, 'item')
+                vern_item.set('type', 'txt')
+                vern_item.set('lang', ws_vernacular)
+                vern_item.text = full_vernacular_text
+            
+            
+            # --- STEP 4.2: Add Free Translation (<item type="gls">) - SHOULD BE SECOND ---
             free_element = line.find('./free')
-            free_translation_text = free_element.text if free_element is not None and free_element.text else ""
+            
+            if free_element is not None and free_element.text is not None:
+                free_translation_text = free_element.text.strip()
+            else:
+                free_translation_text = ""
             
             if free_translation_text:
                 free_item = SubElement(phrase_element, 'item')
                 free_item.set('type', 'gls')
                 free_item.set('lang', ws_freetrans) # Use Free Translation WS code
                 free_item.text = free_translation_text
+            else:
+                # Increment counter if no meaningful free translation text was found
+                missing_freetrans_count += 1
 
-            # 4.2. Prepare the <words> container
+
+            # --- STEP 4.3: Prepare and fill the <words> container (The interlinear data) - SHOULD BE LAST ---
             words_container = SubElement(phrase_element, 'words')
-            
-            # Find the interlinear lines within the source XML
-            vern_line = line.find('./il-lines/vernacular-line')
-            gloss_line = line.find('./il-lines/gloss-line')
-            
-            if vern_line is None or gloss_line is None:
-                continue 
-
-            vern_words = vern_line.findall('./wrd')
-            glosses = gloss_line.findall('./gls')
             
             # Process words and glosses 1:1
             for i in range(min(len(vern_words), len(glosses))):
@@ -118,7 +144,7 @@ def transform_to_flextext_dom(xml_root_in, ws_vernacular, ws_gloss, ws_freetrans
     languages_block = create_languages_block() # Called without arguments
     flextext_root.append(languages_block)
     
-    return document_root 
+    return document_root, missing_freetrans_count 
 
 # ======================================================================
 # --- HELPER FUNCTIONS (Outside main conversion) ---
@@ -195,7 +221,10 @@ def cli_wrapper():
     # 3. Perform Conversion (Calls the main modular function)
     try:
         print("2. Transforming XML to FLExText object...")
-        document_root = transform_to_flextext_dom(input_root, ws_vernacular, ws_gloss, ws_freetrans)
+        # Capture both the XML document root and the missing free translations count
+        document_root, missing_freetrans_count = transform_to_flextext_dom(
+            input_root, ws_vernacular, ws_gloss, ws_freetrans
+        )
         print("   - Transformation successful.")
     except Exception:
         error_message = f"\nFATAL ERROR during XML Transformation:\n{traceback.format_exc()}"
@@ -214,6 +243,12 @@ def cli_wrapper():
             
         print(f"\nCOMPLETED SUCCESSFULLY.")
         print(f"   - FlexText output saved to: '{os.path.basename(output_flextext_path)}'")
+        
+        # --- Debugging Output Alert ---
+        if missing_freetrans_count > 0:
+            print(f"\n*** WARNING ***")
+            print(f"The script skipped adding the Free Translation for {missing_freetrans_count} line(s).")
+            print("This usually happens if the corresponding '<free>' element in your source XML was missing or contained only empty space.")
         
         # Clean up the error log if the entire process was successful
         if os.path.exists(error_log_path):
