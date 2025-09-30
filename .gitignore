@@ -1,3 +1,7 @@
+# Excel Sheet (for language data privacy)
+*.xlsx
+*.xls
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
