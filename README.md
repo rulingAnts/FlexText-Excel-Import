@@ -1,4 +1,4 @@
-# FLEx Excel Transcriber Tool
+# Native-Speaker Excel Transcrption/Back-Translation Tool
 
 ## Overview
 
