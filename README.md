@@ -1,4 +1,4 @@
-# Native-Speaker Excel Transcrption/Back-Translation Tool
+# Native-Speaker Excel Transcription/Back-Translation Tool
 
 ## Overview
 
