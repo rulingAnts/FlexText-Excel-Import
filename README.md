@@ -82,6 +82,8 @@ python xml_to_flextext.py "C:\Path\To\MyStory.xml"
 
 A **GUI (Graphical User Interface) version** is currently in development and will be distributed as a **portable standalone EXE file**. This will simplify the process to a single step for end-users, requiring only a file selection and a button click.
 
+The ability to import XLingPaper Interlinear Text documents as well.
+
 ## Contributing
 
 We welcome all contributions! Help us improve this tool by submitting bug reports or feature ideas via GitHub Issues, or by opening Pull Requests with code improvements. Your involvement benefits the entire language community.
