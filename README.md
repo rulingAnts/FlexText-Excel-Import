@@ -94,11 +94,11 @@ This project is released under the **GNU Affero General Public License v3.0 (AGP
 
 ### Copyright
 
-Copyright (c) 2025, Seth Johnston. All rights reserved.
+Copyright (c) 2025, Seth Johnston and Brian Plimley. All rights reserved.
 
 ### Development Credit
 
-This application's conceptual design and initial implementation were developed by **Gemini**, an advanced large language model built by Google, directed by **Seth Johnston**.
+This application's conceptual design and initial implementation were developed by **Gemini**, an advanced large language model built by Google, directed by Seth Johnston with coding contributions by Brian Plimley. The Excel template was designed and created by Seth Johnston.
 
 ### Technology Ecosystem
 
