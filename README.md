@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository hosts a utility designed to streamline the process of transcription and back-translation for minority language texts. It pairs a structured [**Excel Template**](https://www.google.com/search?q=Interlinear%2520Text%2520Excel%2520Template.xltx "null") with a Python-based converter that generates **FlexText** files suitable for direct import into **Fieldworks Language Explorer (FLEx)**.
+This repository hosts a utility designed to streamline the process of transcription and back-translation for minority language texts. It pairs a structured [**Excel Template**](https://raw.githubusercontent.com/rulingAnts/FlexText-Excel-Import/refs/heads/main/Interlinear%20Text%20Excel%20Template.xltx) with a Python-based converter that generates **FlexText** files suitable for direct import into **Fieldworks Language Explorer (FLEx)**.
 
 The primary goal is to provide a user-friendly format (Excel spreadsheet) for native speakers who may not be familiar with complex linguistic software, allowing them to easily contribute interlinearized text data.
 
@@ -21,7 +21,7 @@ This guide details how to set up the Python environment and use the two command-
 
 ### Prerequisites
 
-1. **Python:** You must have Python 3.8 or newer installed on your system. You can download the latest version for Windows from the [official Python website](https://www.python.org/downloads/windows/ "null").
+1. **Python:** You must have Python 3.8 or newer installed on your system. You can download the latest version for Windows from the [official Python website](https://www.python.org/downloads/windows/).
   
 2. **Libraries:** The scripts rely on the following Python libraries:
   
@@ -38,7 +38,7 @@ pip install openpyxl lxml
 
 ### Step 1: Prepare Your Data
 
-1. Download and fill out the [**Excel Template**](https://www.google.com/search?q=Interlinear%2520Text%2520Excel%2520Template.xltx "null") (`Interlinear Text Excel Template.xltx`).
+1. Download and fill out the **Excel Template** ([`Interlinear Text Excel Template.xltx`](https://raw.githubusercontent.com/rulingAnts/FlexText-Excel-Import/refs/heads/main/Interlinear%20Text%20Excel%20Template.xltx)).
   
 2. Save your completed transcription spreadsheet as an `.xlsx` file (e.g., `MyStory.xlsx`).
   
