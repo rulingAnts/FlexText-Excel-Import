@@ -82,6 +82,10 @@ python xml_to_flextext.py "C:\Path\To\MyStory.xml"
 
 A **GUI (Graphical User Interface) version** is currently in development and will be distributed as a **portable standalone EXE file**. This will simplify the process to a single step for end-users, requiring only a file selection and a button click.
 
+## Contributing
+
+We welcome all contributions! Help us improve this tool by submitting bug reports or feature ideas via GitHub Issues, or by opening Pull Requests with code improvements. Your involvement benefits the entire language community.
+
 ## License
 
 This project is released under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. Please see the `LICENSE` file for full details.
