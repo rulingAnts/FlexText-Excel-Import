@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 import os
+import traceback
 from xml.etree.ElementTree import tostring
 from xml.dom import minidom
 
@@ -22,6 +23,7 @@ class Converter(tk.Tk):
         self.title("Interlinear Converter")
         self.intermediate_xml = None
         self.data_loaded = False
+        self.writing_systems_ready = False
 
         self.mainframe = ttk.Frame(self, padding="10 10 10 10")
         self.mainframe.grid(row=0, column=0, sticky=(tk.N, tk.W, tk.E, tk.S))
@@ -38,10 +40,19 @@ class Converter(tk.Tk):
         self.loadProgress.grid(row=1, column=0, columnspan=3, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.hide_load_progress()
 
-        # Reminders & writing systems
-        self.reminderLabel = ttk.Label(self.mainframe, text="Reminders about setting language and writing systems in Excel and in FLEx.")
+        # Reminder
+        reminderText = ' '.join([
+            "In order for data to be correctly imported into FLEx,",
+            "the writing system codes in the input data must match those in your FLEx project.",
+            "(You can find the writing systems in your FLEx project under Tools -> Configure -> Writing Systems...)",
+            "Vernacular is also called baseline;",
+            "gloss is also called word gloss or literal translation; I need to double check these."
+        ])  # TODO: check labels in FLEx
+        self.reminderLabel = ttk.Label(self.mainframe, text=reminderText)
         self.reminderLabel.grid(row=3, column=0, columnspan=3, pady=5, padx=5)
         self.reminderLabel.config(wraplength=400)
+
+        # Writing systems
         self.wsVernacularLabel = ttk.Label(self.mainframe, text="Vernacular writing system:", anchor='e')
         self.wsVernacularLabel.grid(row=4, column=0, pady=1, padx=5)
         self.wsVernacular = ttk.Label(self.mainframe, text="(not loaded)", anchor='w')
@@ -78,8 +89,8 @@ class Converter(tk.Tk):
         """
         Enable the convert button if input is loaded and output format is selected.
         """
-        
-        if self.data_loaded and self.outputFormatCombo.get():
+
+        if self.data_loaded and self.writing_systems_ready and self.outputFormatCombo.get():
             self.convertButton.state(['!disabled'])
         else:
             self.convertButton.state(['disabled'])
@@ -93,17 +104,29 @@ class Converter(tk.Tk):
                 metadataFree = metadata.find('writing_system_free')
                 if metadataVernacular is not None:
                     self.wsVernacular.config(text=metadataVernacular.text)
+                else:
+                    self.wsVernacular.config(text="(not found)")
+                    # error: Vernacular writing system not defined in input file
                 if metadataGloss is not None:
                     self.wsGloss.config(text=metadataGloss.text)
+                else:
+                    self.wsGloss.config(text="(not found)")
+                    # error: Gloss writing system not defined in input file
                 if metadataFree is not None:
                     self.wsFree.config(text=metadataFree.text)
+                else:
+                    self.wsFree.config(text="(not found)")
+                    # error: Free translation writing system not defined in input file
+                self.writing_systems_ready = (metadataVernacular is not None) and (metadataGloss is not None) and (metadataFree is not None)
             else:
                 # log error
                 # TODO: how to do this cleanly? function clear_writing_systems() or better if/else logic?
-                self.wsVernacular.config(text="(not loaded)")
-                self.wsGloss.config(text="(not loaded)")
-                self.wsFree.config(text="(not loaded)")
+                self.writing_systems_ready = False
+                self.wsVernacular.config(text="(not found)")
+                self.wsGloss.config(text="(not found)")
+                self.wsFree.config(text="(not found)")
         else:
+            self.writing_systems_ready = False
             self.wsVernacular.config(text="(not loaded)")
             self.wsGloss.config(text="(not loaded)")
             self.wsFree.config(text="(not loaded)")
@@ -148,14 +171,14 @@ class Converter(tk.Tk):
             except Exception as e:
                 # most exceptions are reported via error_list, currently.
                 # TODO
-                pass
-            # TODO: set writing system labels
-            # self.inputLang.config(text="Language: [set after loading file]")
-        # check that writing systems are defined
-        
+                return None
+        error_messages = "\n".join(error_list)
+        self.errorDisplay.config(text=error_messages)
+
         self.loadProgress.stop()
         self.hide_load_progress()
         self.data_loaded = True
+        self.update_writing_systems()
         self.update_convert_button_state()
 
     def convert(self):
@@ -173,12 +196,8 @@ class Converter(tk.Tk):
         filenamebase, _ = os.path.splitext(self.inputFileName.cget("text"))
         initialfilename = filenamebase + ".flextext"
         filepath = filedialog.asksaveasfilename(initialfile=initialfilename, defaultextension=".flextext")
-        if filepath:
-            _, outputExt = os.path.splitext(filepath)
-            if outputExt.lower() in [".flextext"]:
-                self.outputFormatCombo.set("FlexText Interlinear")
-            self.outputFileName.config(text=filepath)
-            self.convertButton.state(['!disabled'])
+        if not filepath:
+            return None
 
         self.show_convert_progress()
         self.convertProgress.start()
