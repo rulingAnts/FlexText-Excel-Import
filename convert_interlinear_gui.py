@@ -79,10 +79,12 @@ class Converter(tk.Tk):
         self.convertProgress = ttk.Progressbar(self.mainframe, orient=tk.HORIZONTAL, mode='indeterminate')
         self.convertProgress.grid(row=9, column=0, columnspan=3, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.hide_convert_progress()
+        self.completeLabel = ttk.Label(self.mainframe, text="")
+        self.completeLabel.grid(row=10, column=1, pady=5, padx=5)
 
         # Error display
         self.errorDisplay = ttk.Label(self.mainframe, text="", foreground="red", wraplength=400)
-        self.errorDisplay.grid(row=10, column=0, columnspan=3, pady=5, padx=5)
+        self.errorDisplay.grid(row=11, column=0, columnspan=3, pady=5, padx=5)
 
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
@@ -183,6 +185,7 @@ class Converter(tk.Tk):
         """
 
         self.errorDisplay.config(text="")   # reset error messages
+        self.completeLabel.config(text="")  # reset "Complete!" message
         formatString = self.inputFormatCombo.get()
         if formatString == "Excel Interlinear":
             filetypelist = [("Excel files", "*.xlsx *.xls"), ("All files", "*.*")]
@@ -248,6 +251,7 @@ class Converter(tk.Tk):
             f.write(pretty_xml)
         self.convertProgress.stop()
         self.hide_convert_progress()
+        self.completeLabel.config(text="Conversion complete!")
 
     def prettify_xml(self, element):
         """
