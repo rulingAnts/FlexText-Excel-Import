@@ -1,3 +1,11 @@
+# macOS specific files
+.DS_Store
+**/.DS_Store
+
+# macOS resource forks/shadow files (e.g., ._MyFile.txt)
+._*
+**/.DS_Store?
+
 # Language Data Samples
 Cerita*.*
 
