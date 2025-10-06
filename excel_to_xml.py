@@ -31,7 +31,10 @@ def convert_excel_to_xml_dom(excel_path):
     METADATA_CELLS = {
         'title': 'C2',
         'author': 'C3',
-        'transcriber': 'C4'
+        'transcriber': 'C4',
+        'writing_system_vernacular': 'N2',
+        'writing_system_free': 'N3',
+        'writing_system_gloss': 'N4'
     }
     DATA_START_ROW = 6
     DATA_START_COLUMN = 3 # Column C
