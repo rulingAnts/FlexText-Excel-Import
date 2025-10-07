@@ -194,7 +194,9 @@ class Converter(tk.Tk):
         else:
             raise ValueError("Unsupported input format selected. Add code here")
 
-        filepath = filedialog.askopenfilename(title="Select a file", filetypes=filetypelist)
+        filepath = filedialog.askopenfilename(
+            title="Load a file",
+            filetypes=filetypelist)
         if not filepath:
             return None     # User cancelled
         if not os.path.exists(filepath):
@@ -232,9 +234,14 @@ class Converter(tk.Tk):
             filetypelist = [("XLingPaper files", "*.xml"), ("All files", "*.*")]
         else:
             raise ValueError("Unsupported output format selected. Add code here")
-        filenamebase, _ = os.path.splitext(self.inputFileName)
+        initialpath, initialname = os.path.split(self.inputFileName)
+        filenamebase, _ = os.path.splitext(initialname)
         initialfilename = filenamebase + ".flextext"
-        filepath = filedialog.asksaveasfilename(initialfile=initialfilename, defaultextension=".flextext")
+        filepath = filedialog.asksaveasfilename(
+            title="Save conversion output",
+            initialdir=initialpath, initialfile=initialfilename,
+            defaultextension=".flextext",
+            filetypes=[("FlexText files", "*.flextext"), ("All files", "*.*")])
         if not filepath:
             return None
 
