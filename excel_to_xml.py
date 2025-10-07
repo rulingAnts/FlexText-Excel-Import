@@ -4,6 +4,15 @@ import sys
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom 
 
+def tqdmDummy(arg1, **kwargs):
+    """
+    If code is being run for a GUI with no attached console (pyinstaller -w),
+    use this to allow tqdm(range(...), ...) to only return the range(...).
+    """
+
+    return arg1
+
+
 def convert_excel_to_xml_dom(excel_path):
     """
     Core function to read interlinear data from an Excel file, validate it, 
@@ -21,7 +30,12 @@ def convert_excel_to_xml_dom(excel_path):
     try:
         # Import necessary external libraries
         import openpyxl 
-        from tqdm import tqdm # Import tqdm here
+        if sys.stdin is None:  # no console window (pyinstaller -w)
+            IS_CONSOLE = False
+            tqdm = tqdmDummy
+        else:   # normal CLI
+            IS_CONSOLE = True
+            from tqdm import tqdm # Import tqdm here
     except ImportError as e:
         # Provide a helpful error if either library is missing
         library_name = 'openpyxl' if 'openpyxl' in str(e) else 'tqdm'
@@ -174,7 +188,10 @@ def convert_excel_to_xml_dom(excel_path):
             consecutive_empty_blocks += 1
 
             if consecutive_empty_blocks >= BLANK_BLOCK_EXIT_THRESHOLD:
-                tqdm.write(f"\nExiting early: Found {BLANK_BLOCK_EXIT_THRESHOLD} consecutive empty blocks (approx. {BLANK_BLOCK_EXIT_THRESHOLD * ROWS_PER_LINE_BLOCK} blank rows).")
+                if IS_CONSOLE:
+                    tqdm.write(f"\nExiting early: Found {BLANK_BLOCK_EXIT_THRESHOLD} consecutive empty blocks (approx. {BLANK_BLOCK_EXIT_THRESHOLD * ROWS_PER_LINE_BLOCK} blank rows).")
+                else:
+                    pass    # no need for message for GUI
                 break # Break the tqdm loop and exit processing
             
             # If it hasn't reached the threshold, signal a paragraph break if the current one has data

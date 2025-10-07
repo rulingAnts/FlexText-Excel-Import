@@ -19,6 +19,7 @@ class Converter(tk.Tk):
 
         __init__ method sets up the main window and all widgets.
         """
+
         super().__init__()
         self.title("Interlinear Converter")
         self.intermediate_xml = None
@@ -140,7 +141,6 @@ class Converter(tk.Tk):
             return "Invalid code: " + wsText, False
         else:
             return wsText, True
-        
 
     def update_writing_systems(self):
         if self.data_loaded:
@@ -193,7 +193,7 @@ class Converter(tk.Tk):
             filetypelist = [("XLingPaper files", "*.xml"), ("All files", "*.*")]
         else:
             raise ValueError("Unsupported input format selected. Add code here")
-        
+
         filepath = filedialog.askopenfilename(title="Select a file", filetypes=filetypelist)
         if not filepath:
             return None     # User cancelled
