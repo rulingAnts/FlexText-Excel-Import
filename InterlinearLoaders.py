@@ -15,19 +15,35 @@ class InterlinearLoader(ABC):
     """
 
     def __init__(self):
-        # self.isdone = False   # instead, set next_step = None when nothing left to do.
         self.issuccess = False
         super().__init__()  # for multiple inheritance...
         
-        # a Loader object must define processing steps
+        # a Loader object must define the following
         assert(hasattr(self, 'next_step'))
+        assert(hasattr(self, '_progress'))
+
+    @property
+    def isdone(self):
+        """
+        Returns True if there are no more processing steps to take.
+        """
+        
+        return bool(self.next_step is None)
+    
+    @property
+    def progress(self):
+        """
+        Returns a float in the range of 0.0 - 1.0 representing processing progress.
+        """
+
+        return self._progress
 
     def run(self):
         """
         Run all steps directly (no breaks)
         """
 
-        while self.next_step is not None:
+        while not self.isdone:
             self.next_step()
 
 
@@ -125,13 +141,10 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
 
     To use tqdm for displaying progress:
         e = ExcelInterlinearLoader(name_and_path_of_excel_file_to_load)
-        e.load_sheet()  # defines e.n_steps
-        n = 1
-        with tqdm(total=e.n_steps, desc="Processing Excel File") as pbar:
-            while e.next_step is not None:
+        with tqdm(total=1.0, desc="Processing Excel File") as pbar:
+            while not e.isdone:
                 e.next_step()
-                pbar.update(n)
-                n += 1
+                pbar.update(e.progress)
     """
 
     def __init__(self, loadname):
@@ -148,19 +161,45 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         self.DATA_END_COLUMN = 26 # Column Z (where the free translation merge ends)
         self.ROWS_PER_LINE_BLOCK = 4
         self.BLANK_BLOCK_EXIT_THRESHOLD = 5 # Exit after 5 consecutive empty 4-row blocks (20 blank rows)
+        self.FILE_LOAD_PROGRESS_WEIGHT = 0.5
 
         self.warning_list = []  # fatal errors are raised as exceptions to be handled elsewhere
         self.consecutive_empty_blocks = 0
 
         self.loadname = loadname
-        self.n_steps = None
-        self.current_row = None
+        self.n_blocks = None
+        self._progress = 0
+        self.current_block = None
         self.next_step = self.load_sheet
         super().__init__()
 
-        self.debug = False
+        self.debug = True
+
+    def update_progress(self, value=None):
+        """
+        Update the progress attribute, either from current_block or with a set value.
+
+        load_sheet is assigned self.FILE_LOAD_PROGRESS_WEIGHT of the progress.
+        The rest of the progressbar is evenly divided among:
+            read_metadata: 1 unit 
+            read_one_block: 1 unit per block
+            cleanup: 1 unit
+        """
+
+        w = self.FILE_LOAD_PROGRESS_WEIGHT
+
+        if value is None:
+            self._progress = w + (1 - w) * self.current_block / (self.n_blocks + 2)
+        elif value == -1:
+            self._progress = w + (1 - w) * (self.n_blocks + 1) / (self.n_blocks + 2)
+        else:
+            self._progress = float(value)
 
     def load_sheet(self):
+        """
+        Load the Excel sheet as an openpyxl object and count the rows.
+        """
+
         if self.debug:
             print('load_sheet')
         try:
@@ -182,16 +221,21 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
             if self.debug:
                 print(f'  Total rows: {self.sheet.max_row}')
                 print(f'  Data rows: {n_data_rows}')
-        self.n_steps = (n_data_rows // self.ROWS_PER_LINE_BLOCK) + 2 # include read_metadata, cleanup
+        self.n_blocks = (n_data_rows // self.ROWS_PER_LINE_BLOCK)
+        self.update_progress(self.FILE_LOAD_PROGRESS_WEIGHT)
         self.next_step = self.read_metadata
         # need approach for if a step fails, how to let GUI know?
         # self.next_step = None
         # self.isdone = True
         # self.success = False    # something like that
         if self.debug:
-            print(f'load_sheet done: {self.n_steps} steps found')
+            print(f'load_sheet: n_blocks = {self.n_blocks}')
 
     def read_metadata(self):
+        """
+        Read the metadata cells of the spreadsheet
+        """
+        
         if self.debug:
             print('read_metadata')
         for tag, cell_coord in self.METADATA_CELLS.items():
@@ -199,19 +243,22 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
             cell_value = self.get_cell_value(cell.row, cell.column)
             element = SubElement(self.xml_metadata, tag)
             element.text = cell_value if cell_value else ""
-        self.current_row = self.DATA_START_ROW
+        self.current_block = 1
+        self.update_progress()
         self.next_step = self.read_one_block
-        if self.debug:
-            print('read_metadata done')
     
     def read_one_block(self):
-        if self.debug:
-            print(f'read_one_block row {self.current_row}')
-        vernacular_row = self.current_row
-        gloss_row =      self.current_row + 1
-        free_row =       self.current_row + 2
-        # blank_row =      self.current_row + 3 # worth checking for blankness or no?
+        """
+        Read one interlinear line (block) of data, and check if done.
+        """
+        
+        vernacular_row = self.DATA_START_ROW + (self.current_block - 1) * self.ROWS_PER_LINE_BLOCK
+        gloss_row =      vernacular_row + 1
+        free_row =       vernacular_row + 2
+        # blank_row =      vernacular_row + 3 # worth checking for blankness or no?
 
+        if self.debug:
+            print(f'read_one_block row {vernacular_row}')
         vern_words = []
         gloss_words = []
 
@@ -260,17 +307,19 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
             if self.debug:
                 print(f'is_block_empty, consecutive_empty_blocks = {self.consecutive_empty_blocks}')
             if self.consecutive_empty_blocks >= self.BLANK_BLOCK_EXIT_THRESHOLD:
-                self.warning_list.append(
-                    f"Finishing early due to {self.consecutive_empty_blocks} consecutive empty interlinear lines")
+                # self.warning_list.append(
+                #     f"Finishing early due to {self.consecutive_empty_blocks} consecutive empty interlinear lines")
+                self.update_progress(-1)
                 self.next_step = self.cleanup
+                return None
             elif list(self.xml_paragraph):
                 self.new_xml_paragraph()    
 
-        self.current_row = self.current_row + self.ROWS_PER_LINE_BLOCK
-        if self.current_row > self.sheet.max_row:
+        self.current_block += 1
+        self.update_progress()
+        if self.current_block > self.n_blocks:
+            # self.update_progress(-1)
             self.next_step = self.cleanup
-        if self.debug:
-            print('read_one_block done')
 
     def cleanup(self):
         """
@@ -278,13 +327,13 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
 
         Then indicate that the processing is completed.
         """
-        if self.debug:
-            print('cleanup')
+
         if not list(self.xml_body) or not list(self.xml_paragraph):
             for p in list(self.xml_body):
                 if not list(p):
                     self.xml_body.remove(p)
         self.next_step = None
+        self.update_progress(1.0)
         self.issuccess = True
 
     def get_cell_value(self, row, col):
@@ -298,6 +347,7 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         else:
             return str(cell.value).strip()
 
+
 if __name__ == "__main__":
     # TEMP: for testing
     import os
@@ -306,13 +356,10 @@ if __name__ == "__main__":
 
     if True:
         from tqdm import tqdm
-        xl.load_sheet()  # defines e.n_steps
-        n = 1
-        with tqdm(total=xl.n_steps, desc="Processing Excel File") as pbar:
+        with tqdm(total=1.0, desc="Processing Excel File") as pbar:
             while xl.next_step is not None:
                 xl.next_step()
-                pbar.update(n)
-                n += 1
+                pbar.update(xl.progress)
         outputname = filename[:-5] + r'_ClassTestTqdm.xml'
         xl.write(outputname)
         print(f'Output written to: {outputname}')
