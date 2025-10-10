@@ -200,8 +200,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         Load the Excel sheet as an openpyxl object and count the rows.
         """
 
-        if self.debug:
-            print('load_sheet')
         try:
             workbook = openpyxl.load_workbook(self.loadname, data_only=True)
         except Exception as e:
@@ -213,14 +211,14 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
             raise Exception(f"Error loading first sheet of Excel file '{self.loadname}'") from e
 
         n_data_rows = self.sheet.max_row - self.DATA_START_ROW + 1
+        if self.debug:
+            print(f'  Total rows: {self.sheet.max_row}')
+            print(f'  Data rows: {n_data_rows}')
         if n_data_rows % self.ROWS_PER_LINE_BLOCK:
             # extra row or part of an interlinear line
             n_extra = n_data_rows % self.ROWS_PER_LINE_BLOCK
             self.warning_list.append('Partial interlinear block of data will be ignored ' +
                                      f'({n_extra} extra data rows found)')
-            if self.debug:
-                print(f'  Total rows: {self.sheet.max_row}')
-                print(f'  Data rows: {n_data_rows}')
         self.n_blocks = (n_data_rows // self.ROWS_PER_LINE_BLOCK)
         self.update_progress(self.FILE_LOAD_PROGRESS_WEIGHT)
         self.next_step = self.read_metadata
@@ -236,8 +234,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         Read the metadata cells of the spreadsheet
         """
         
-        if self.debug:
-            print('read_metadata')
         for tag, cell_coord in self.METADATA_CELLS.items():
             cell = self.sheet[cell_coord]
             cell_value = self.get_cell_value(cell.row, cell.column)
@@ -257,8 +253,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         free_row =       vernacular_row + 2
         # blank_row =      vernacular_row + 3 # worth checking for blankness or no?
 
-        if self.debug:
-            print(f'read_one_block row {vernacular_row}')
         vern_words = []
         gloss_words = []
 
@@ -287,8 +281,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         is_block_empty = (not vern_words) and (not free_translation)
 
         if not is_block_empty:
-            if self.debug:
-                print('not is_block_empty, consecutive_empty_blocks = 0')
             self.consecutive_empty_blocks = 0
             self.new_xml_line()
             self.new_xml_il_lines()
@@ -304,8 +296,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         else:
             # Paragraph break / Early Exit Logic
             self.consecutive_empty_blocks += 1
-            if self.debug:
-                print(f'is_block_empty, consecutive_empty_blocks = {self.consecutive_empty_blocks}')
             if self.consecutive_empty_blocks >= self.BLANK_BLOCK_EXIT_THRESHOLD:
                 # self.warning_list.append(
                 #     f"Finishing early due to {self.consecutive_empty_blocks} consecutive empty interlinear lines")
@@ -351,10 +341,11 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
 if __name__ == "__main__":
     # TEMP: for testing
     import os
-    filename = r'Cerita Juari Atau (Barnabas) - in template.xlsx'
+    # filename = r'Cerita Juari Atau (Barnabas) - in template.xlsx'
+    filename = r'Interlinear Text Excel Template (80 lines)2.xlsx'
     xl = ExcelInterlinearLoader(filename)
 
-    if True:
+    if False:
         from tqdm import tqdm
         with tqdm(total=1.0, desc="Processing Excel File") as pbar:
             while xl.next_step is not None:

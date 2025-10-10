@@ -87,21 +87,21 @@ class Converter(tk.Tk):
         self.convertButton.grid(row=8, column=2, pady=5, padx=5)
         self.convertProgressLabel = ttk.Label(self.mainframe, text="")
         self.convertProgressLabel.grid(row=9, column=0, pady=5, padx=5)
-        self.convertProgress = ttk.Progressbar(self.mainframe, orient=tk.HORIZONTAL, mode='indeterminate')
+        self.convertProgress = ttk.Progressbar(self.mainframe, orient=tk.HORIZONTAL, mode='determinate', maximum=1.0)
         self.convertProgress.grid(row=9, column=1, columnspan=2, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.hide_convert_progress()
-        self.completeLabel = ttk.Label(self.mainframe, text="")
-        self.completeLabel.grid(row=10, column=1, pady=5, padx=5)
+        # self.completeLabel = ttk.Label(self.mainframe, text="")
+        # self.completeLabel.grid(row=10, column=1, pady=5, padx=5)
 
         # Error display
-        self.errorDisplay = ttk.Label(self.mainframe, text="", foreground="red", wraplength=400)
+        self.errorDisplay = ttk.Label(self.mainframe, text="", wraplength=400)
         self.errorDisplay.grid(row=11, column=0, columnspan=3, pady=5, padx=5)
 
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 
-        self.rowconfigure(1, minsize=100)
-        self.rowconfigure(9, minsize=100)
+        # self.rowconfigure(1, minsize=100)
+        # self.rowconfigure(9, minsize=100)
         self.rowconfigure(10, minsize=100)
 
     def add_error_msg(self, errorString):
@@ -203,12 +203,10 @@ class Converter(tk.Tk):
             load_file_end()
         """
 
-        print('load_file_begin 1')
         self.is_data_loaded = False
         self.intermediate_xml = None
         self.inputFileName = None
         self.errorDisplay.config(text="")   # reset error messages
-        self.completeLabel.config(text="")  # reset "Complete!" message
         formatString = self.inputFormatCombo.get()
         if formatString == "Excel Interlinear":
             filetypelist = [("Excel files", "*.xlsx *.xls"), ("All files", "*.*")]
@@ -226,23 +224,18 @@ class Converter(tk.Tk):
             self.add_error_msg("Error: File does not exist.")
             return None
 
-        print('load_file_begin 2')
         self.show_load_progress()
         self.loadProgress["value"] = 0.0
         if formatString == "Excel Interlinear":
             try:
-                print('load_file_begin 3')
                 self.loader = ExcelInterlinearLoader(filepath)
-                print('load_file_begin 4')
             except Exception as e:
                 self.add_error_msg(f"Error initializing ExcelInterlinearLoader:\n{traceback.format_exc()}")
                 return None
         # tell tkinter to start when ready
 
-        print('load_file_begin 5')
-        self.update_idletasks()
+        self.update_idletasks() # needed to draw progressbar
         self.after(self.AFTER_DELAY_MS, self.load_file_next)
-        print('load_file_begin 6')
         # TODO think about this more
         # TODO update requirements for InterlinearLoader class
 
@@ -319,7 +312,7 @@ class Converter(tk.Tk):
             return None
 
         self.show_convert_progress()
-        self.convertProgress.start()
+        self.convertProgress["value"] = 0.0
         try:
             (flextext_xml, missing_freetrans_count) = transform_to_flextext_dom(
                 self.intermediate_xml, self.wsVernacular.cget('text'), self.wsGloss.cget('text'), self.wsFree.cget('text'))
@@ -329,9 +322,10 @@ class Converter(tk.Tk):
         pretty_xml = self.prettify_xml(flextext_xml)
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(pretty_xml)
-        self.convertProgress.stop()
+        self.convertProgress["value"] = 1.0
         self.hide_convert_progress()
-        self.completeLabel.config(text="Conversion complete!")
+        self.convertProgressLabel.config(text="Conversion complete!")
+        self.add_error_msg(f"Written to file at {filepath}")
 
     def prettify_xml(self, element):
         """
