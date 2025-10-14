@@ -123,8 +123,12 @@ class Converter(tk.Tk):
         Add an error message to the bottom of errorDisplay.
         """
         self.errorDisplay.config(state='normal')
-        self.errorDisplay.insert('end', errorString + '\n')
-        self.errorDisplay.see('end')
+        see_this = self.errorDisplay.index('end')   # Position at end of current text
+        self.errorDisplay.insert('end', '\n' + errorString) # Start a new line
+        self.errorDisplay.see(see_this) # Make sure the end of previous text is visible.
+        # So the top of a big block of load warnings will be visible first, instead of the end of the block.
+        # But after that, if a new message is printed, the text box scrolls so it is visible.
+        # This behavior makes the most sense to me...
         self.errorDisplay.config(state='disabled')
 
     def update_convert_button_state(self):
