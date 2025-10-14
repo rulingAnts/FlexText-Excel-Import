@@ -6,18 +6,22 @@ This repository hosts a utility designed to streamline the process of transcript
 
 The primary goal is to provide a user-friendly format (Excel spreadsheet) for native speakers who may not be familiar with complex linguistic software, allowing them to easily contribute interlinearized text data.
 
-## Current Status (CLI Version)
+## GUI Version
 
-The current implementation is distributed as two command-line interface (CLI) **Python scripts**, which perform a two-stage conversion process:
+A graphical user interface (GUI) is available for selecting an input Excel file and converting it into a FlexText XML file, which is FLEx-compatible. As in the CLI version, the data is converted into an intermediate custom XML format in memory, before being written into a `*.flextext` file. (In the GUI version, the intermediate XML file is not written to disk.)
+
+## CLI Version
+
+The command-line interface (CLI) is still supported, through **Python scripts** which perform a two-stage conversion process:
 
 1. **Stage 1: `excel_to_xml.py`**: Converts the structured data from the Excel template (`.xlsx`) into an intermediate custom XML format.
   
 2. **Stage 2: `xml_to_flextext.py`**: Converts the intermediate XML file into the final FLEx-compatible FlexText format (`.flextext`).
   
 
-## Setup and CLI Usage
+## Setup and GUI Usage
 
-This guide details how to set up the Python environment and use the two command-line interface (CLI) scripts to convert your transcribed Excel data into a FLEx-compatible FlexText file. **These instructions assume you are running a Windows operating system.**
+This guide details how to set up the Python environment and use the GUI to convert your transcribed Excel data into a FLEx-compatible FlexText file. **These instructions assume you are running a Windows operating system.**
 
 ### Prerequisites
 
@@ -39,35 +43,17 @@ pip install openpyxl lxml
 ### Step 1: Prepare Your Data
 
 1. Download and fill out the **Excel Template** ([`Interlinear Text Excel Template.xltx`](https://raw.githubusercontent.com/rulingAnts/FlexText-Excel-Import/refs/heads/main/Interlinear%20Text%20Excel%20Template.xltx)).
+
+2. Ensure the writing system codes in the header are filled correctly with 2- or 3-letter language codes to match the fields in your FLEx database.
   
-2. Save your completed transcription spreadsheet as an `.xlsx` file (e.g., `MyStory.xlsx`).
+3. Save your completed transcription spreadsheet as an `.xlsx` file (e.g., `MyStory.xlsx`).
   
 
-### Step 2: Run Stage 1 (Excel to Intermediate XML)
+### Step 2: Run conversion GUI
 
-The first script converts your Excel file (`.xlsx`) into an intermediate XML file (`.xml`).
+Run `convert_interlinear_gui.py` in Python. The GUI window should be self-explanatory.
 
-**Usage:** Provide the full path to your Excel file as the first command-line argument. **Always enclose the path in quotes if it contains spaces.**
-
-```
-python excel_to_xml.py "C:\Path\To\MyStory.xlsx"
-```
-
-**Output:** The script will save the intermediate XML file in the *same directory* as your input file, using the same name with a `.xml` extension (e.g., `C:\Path\To\MyStory.xml`).
-
-### Step 3: Run Stage 2 (Intermediate XML to FlexText)
-
-The second script converts the intermediate XML file (`.xml`) into the final FlexText file (`.flextext`).
-
-**Usage:** Provide the full path to the intermediate XML file as the first command-line argument.
-
-```
-python xml_to_flextext.py "C:\Path\To\MyStory.xml"
-```
-
-**Output:** The script will save the final FlexText file in the *same directory* as the XML input file, using the same name with a `.flextext` extension (e.g., `C:\Path\To\MyStory.flextext`).
-
-### Step 4: Import into Fieldworks Language Explorer (FLEx)
+### Step 3: Import into Fieldworks Language Explorer (FLEx)
 
 1. Open your FLEx project.
   
@@ -80,9 +66,9 @@ python xml_to_flextext.py "C:\Path\To\MyStory.xml"
 
 ## Upcoming Features
 
-A **GUI (Graphical User Interface) version** is currently in development and will be distributed as a **portable standalone EXE file**. This will simplify the process to a single step for end-users, requiring only a file selection and a button click.
+A **portable standalone EXE file** is in development. This will simplify the process to a single step for end-users, requiring only a file selection and a button click.
 
-The ability to import XLingPaper Interlinear Text documents as well.
+Other input and output formats are also planned.
 
 ## Contributing
 
