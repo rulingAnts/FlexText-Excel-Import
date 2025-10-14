@@ -173,7 +173,7 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
         self.next_step = self.load_sheet
         super().__init__()
 
-        self.debug = True
+        self.debug = False  # for printing to console
 
     def update_progress(self, value=None):
         """

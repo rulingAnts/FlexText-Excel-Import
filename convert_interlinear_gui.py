@@ -9,9 +9,6 @@ from InterlinearLoaders import ExcelInterlinearLoader
 from excel_to_xml import convert_excel_to_xml_dom
 from xml_to_flextext import transform_to_flextext_dom
 
-# TO DO: make the specific conversion engines into classes 
-# and structure operations so they don't block Tkinter's event loop for long.
-# tkdocs.com/tutorial/eventloop.html
 
 class Converter(tk.Tk):
     def __init__(self):
@@ -42,7 +39,7 @@ class Converter(tk.Tk):
         self.inputLoadButton = ttk.Button(
             self.mainframe, text="Select input file & load",
             state='disabled', command=self.load_file_begin)
-        self.inputLoadButton.grid(row=0, column=2, pady=5, padx=5)
+        self.inputLoadButton.grid(row=0, column=2, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.loadProgressLabel = ttk.Label(self.mainframe, text="")
         self.loadProgressLabel.grid(row=1, column=0, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.loadProgress = ttk.Progressbar(
@@ -52,29 +49,35 @@ class Converter(tk.Tk):
 
         # Reminder
         reminderText = ' '.join([
-            "In order for data to be correctly imported into FLEx,",
+            "Note:",
+            "\n\nIn order for data to be correctly imported into FLEx,",
             "the writing system codes in the input data must match those in your FLEx project.",
-            "(You can find the writing systems in your FLEx project under Tools -> Configure -> Writing Systems...)",
-            "Vernacular is also called baseline;",
-            "gloss is also called word gloss or literal translation; I need to double check these."
-        ])  # TODO: check labels in FLEx
+            "\n\nSpecifically, go in the menu to Tools -> Configure -> Writing Systems... to set the vernacular writing system (baseline),",
+            "and the writing system(s) available for analysis (including gloss and free translation).",
+            "In addition, open the 'Gloss' or 'Analyze' tab of your text then go in the menu to",
+            "Tools -> Configure -> Interlinear... to set the writing systems for the Word Gloss and Free Translation."
+        ])  # TODO: check newer FLEx versions for updated menu paths
         self.reminderLabel = ttk.Label(self.mainframe, text=reminderText)
         self.reminderLabel.grid(row=3, column=0, columnspan=3, pady=5, padx=5)
-        self.reminderLabel.config(wraplength=400)
+        self.reminderLabel.config(wraplength=450)
 
-        # Writing systems
-        self.wsVernacularLabel = ttk.Label(self.mainframe, text="Vernacular writing system:", anchor='e')
-        self.wsVernacularLabel.grid(row=4, column=0, pady=1, padx=5)
-        self.wsVernacular = ttk.Label(self.mainframe, text="(not loaded)", anchor='w')
-        self.wsVernacular.grid(row=4, column=1, pady=1, padx=5)
-        self.wsFreeLabel = ttk.Label(self.mainframe, text="Free trans. writing system:", anchor='e')
-        self.wsFreeLabel.grid(row=5, column=0, pady=1, padx=5)
-        self.wsFree = ttk.Label(self.mainframe, text="(not loaded)", anchor='w')
-        self.wsFree.grid(row=5, column=1, pady=1, padx=5)
-        self.wsGlossLabel = ttk.Label(self.mainframe, text="Gloss writing system:", anchor='e')
-        self.wsGlossLabel.grid(row=6, column=0, pady=1, padx=5)
-        self.wsGloss = ttk.Label(self.mainframe, text="(not loaded)", anchor='w')
-        self.wsGloss.grid(row=6, column=1, pady=1, padx=5)
+    # Writing systems frame
+        self.wsFrame = ttk.Frame(self.mainframe)
+        self.wsFrame.grid(row=4, column=0, columnspan=3, pady=1, padx=0, sticky=(tk.W, tk.E))
+        self.wsVernacularLabel = ttk.Label(self.wsFrame, text="\tVernacular writing system:", anchor='w', justify='left')
+        self.wsVernacularLabel.grid(row=0, column=0, pady=1, padx=5, sticky='w')
+        self.wsVernacular = ttk.Label(self.wsFrame, text="(not loaded)", anchor='w')
+        self.wsVernacular.grid(row=0, column=1, pady=1, padx=5)
+        self.wsGlossLabel = ttk.Label(self.wsFrame, text="\tGloss writing system:", anchor='w', justify='left')
+        self.wsGlossLabel.grid(row=1, column=0, pady=1, padx=5, sticky='w')
+        self.wsGloss = ttk.Label(self.wsFrame, text="(not loaded)", anchor='w')
+        self.wsGloss.grid(row=1, column=1, pady=1, padx=5)
+        self.wsFreeLabel = ttk.Label(self.wsFrame, text="\tFree trans. writing system:", anchor='w', justify='left')
+        self.wsFreeLabel.grid(row=2, column=0, pady=1, padx=5, sticky='w')
+        self.wsFree = ttk.Label(self.wsFrame, text="(not loaded)", anchor='w')
+        self.wsFree.grid(row=2, column=1, pady=1, padx=5)
+        self.extraSpace = ttk.Label(self.wsFrame, text="\n")
+        self.extraSpace.grid(row=3, column=1)
         self.update_writing_systems()
 
         # Output block
@@ -94,24 +97,28 @@ class Converter(tk.Tk):
         # self.completeLabel.grid(row=10, column=1, pady=5, padx=5)
 
         # Error display
-        self.errorDisplay = ttk.Label(self.mainframe, text="", wraplength=400)
-        self.errorDisplay.grid(row=11, column=0, columnspan=3, pady=5, padx=5)
+        # Add a Text widget and vertical scrollbar for error display directly to mainframe
+        default_font = ttk.Style().lookup('TLabel', 'font')
+        self.errorDisplay = tk.Text(
+            self.mainframe, wrap='word', height=9, width=50, state='disabled', 
+            borderwidth=2, relief='sunken', font=default_font, 
+            yscrollcommand=lambda *args: self.errorDisplayScrollbar.set(*args))
+        self.errorDisplay.grid(row=11, column=0, columnspan=3, pady=5, padx=(5,0), sticky=(tk.N, tk.S, tk.W, tk.E))
+        self.errorDisplayScrollbar = ttk.Scrollbar(self.mainframe, orient='vertical', command=self.errorDisplay.yview)
+        self.errorDisplayScrollbar.grid(row=11, column=3, sticky=(tk.N, tk.S, tk.W))
 
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=1)
-
-        # self.rowconfigure(1, minsize=100)
-        # self.rowconfigure(9, minsize=100)
-        self.rowconfigure(10, minsize=100)
+        self.mainframe.columnconfigure(1, weight=1)
+        self.mainframe.columnconfigure(3, weight=0)
+        self.mainframe.rowconfigure(10, weight=1)
 
     def add_error_msg(self, errorString):
         """
         Add an error message to the bottom of errorDisplay.
         """
-
-        currentText = self.errorDisplay.cget('text')
-        newText = '\n'.join([currentText, errorString])
-        self.errorDisplay.config(text=newText)
+        self.errorDisplay.config(state='normal')
+        self.errorDisplay.insert('end', errorString + '\n')
+        self.errorDisplay.see('end')
+        self.errorDisplay.config(state='disabled')
 
     def update_convert_button_state(self):
         """
@@ -142,10 +149,10 @@ class Converter(tk.Tk):
         if not wsText:
             return "(not found)", False
         elif not isinstance(wsText, str):
-            self.add_error_msg("Error: writing system code is not a string")
+            self.add_error_msg("❌ Error: writing system code is not a string")
             return "(invalid type)", False
         elif len(wsText) < 2 or len(wsText) > 3:
-            self.add_error_msg("Error: writing system code must be 2 or 3 letters")
+            self.add_error_msg("❌ Error: writing system code must be 2 or 3 letters")
             if len(wsText) > 8:
                 wsText = wsText[:5] + '...'
             return "Invalid code: " + wsText, False
@@ -164,9 +171,9 @@ class Converter(tk.Tk):
                 self.wsFree.config(text=displayTextFree)
                 self.writing_systems_ready = isValidVernacular and isValidGloss and isValidFree
                 if not self.writing_systems_ready:
-                    self.add_error_msg("All writing system codes must be valid in order to convert.")
+                    self.add_error_msg("❌ All writing system codes must be valid in order to convert.")
             else:
-                self.add_error_msg("Error: input file metadata not found")
+                self.add_error_msg("❌ Error: input file metadata not found")
                 self.writing_systems_ready = False
                 self.wsVernacular.config(text="(not found)")
                 self.wsGloss.config(text="(not found)")
@@ -206,7 +213,11 @@ class Converter(tk.Tk):
         self.is_data_loaded = False
         self.intermediate_xml = None
         self.inputFileName = None
-        self.errorDisplay.config(text="")   # reset error messages
+        # delete error messages
+        self.errorDisplay.config(state='normal')
+        self.errorDisplay.delete('1.0', 'end')
+        self.errorDisplay.config(state='disabled')
+        
         formatString = self.inputFormatCombo.get()
         if formatString == "Excel Interlinear":
             filetypelist = [("Excel files", "*.xlsx *.xls"), ("All files", "*.*")]
@@ -221,7 +232,7 @@ class Converter(tk.Tk):
         if not filepath:
             return None     # User cancelled
         if not os.path.exists(filepath):
-            self.add_error_msg("Error: File does not exist.")
+            self.add_error_msg("❌ Error: File does not exist.")
             return None
 
         self.show_load_progress()
@@ -230,7 +241,7 @@ class Converter(tk.Tk):
             try:
                 self.loader = ExcelInterlinearLoader(filepath)
             except Exception as e:
-                self.add_error_msg(f"Error initializing ExcelInterlinearLoader:\n{traceback.format_exc()}")
+                self.add_error_msg(f"❌ Error initializing ExcelInterlinearLoader:\n{traceback.format_exc()}")
                 return None
         # tell tkinter to start when ready
 
@@ -244,7 +255,6 @@ class Converter(tk.Tk):
         Run self.loader.next_step(), handling errors and completion events.
         """
 
-        print('  load_file_next 1')
         if self.loader is not None:
             if self.loader.isdone:
                 self.loadProgress["value"] = 1.0
@@ -254,7 +264,7 @@ class Converter(tk.Tk):
                 try:
                     self.loader.next_step()
                 except Exception as e:
-                    self.add_error_msg(traceback.format_exc(e))
+                    self.add_error_msg('❌ Loading error: ' + traceback.format_exc())
                     self.load_file_end()
                 else:   # if no error
                     self.loadProgress["value"] = self.loader.progress
@@ -270,7 +280,7 @@ class Converter(tk.Tk):
 
         if self.loader is None or self.loader.next_step is not None:
             raise Exception('Cannot show loader warnings in this state')
-        error_messages = "\n".join(self.loader.warning_list)
+        error_messages = '⚠️' + '\n⚠️  '.join(self.loader.warning_list)
         self.add_error_msg(error_messages)
         
         self.intermediate_xml = self.loader.xml_root
@@ -317,7 +327,7 @@ class Converter(tk.Tk):
             (flextext_xml, missing_freetrans_count) = transform_to_flextext_dom(
                 self.intermediate_xml, self.wsVernacular.cget('text'), self.wsGloss.cget('text'), self.wsFree.cget('text'))
         except Exception:
-            self.add_error_msg(f"Conversion error:\n{traceback.format_exc()}")
+            self.add_error_msg(f"❌ Conversion error:\n{traceback.format_exc()}")
             return None
         pretty_xml = self.prettify_xml(flextext_xml)
         with open(filepath, 'w', encoding='utf-8') as f:
@@ -325,7 +335,7 @@ class Converter(tk.Tk):
         self.convertProgress["value"] = 1.0
         self.hide_convert_progress()
         self.convertProgressLabel.config(text="Conversion complete!")
-        self.add_error_msg(f"Written to file at {filepath}")
+        self.add_error_msg(f"\nWritten to file at {filepath}") # extra blank line
 
     def prettify_xml(self, element):
         """
