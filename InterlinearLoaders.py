@@ -8,7 +8,11 @@ class InterlinearLoader(ABC):
     """
     Abstract class for loading an interlinear loader.
 
-    Provides issuccess attribute and run() method.
+    Includes the following:
+    - issuccess (attribute)
+    - isdone (property)
+    - progress (property)
+    - run (method)
 
     Concrete child classes must have:
     -a next_step attribute which defines a processing function
@@ -17,10 +21,10 @@ class InterlinearLoader(ABC):
     def __init__(self):
         self.issuccess = False
         super().__init__()  # for multiple inheritance...
-        
+
+        self._progress = 0
         # a Loader object must define the following
         assert(hasattr(self, 'next_step'))
-        assert(hasattr(self, '_progress'))
 
     @property
     def isdone(self):
@@ -75,7 +79,6 @@ class InterlinearXML:
     """
 
     def __init__(self):
-        # does it work fine to define body before filling metadata?
         self.xml_root = Element('text')
         self.xml_metadata = SubElement(self.xml_root, 'text_metadata')
         self.xml_body = SubElement(self.xml_root, 'body')
@@ -148,6 +151,10 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
     """
 
     def __init__(self, loadname):
+        """
+        Construct ExcelInterlinearLoader object with definitions and initialization
+        """
+
         self.METADATA_CELLS = {
             'title': 'C2',
             'author': 'C3',
@@ -168,7 +175,6 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
 
         self.loadname = loadname
         self.n_blocks = None
-        self._progress = 0
         self.current_block = None
         self.next_step = self.load_sheet
         super().__init__()
@@ -340,12 +346,13 @@ class ExcelInterlinearLoader(InterlinearLoader, InterlinearXML):
 
 if __name__ == "__main__":
     # TEMP: for testing
-    import os
+
     # filename = r'Cerita Juari Atau (Barnabas) - in template.xlsx'
     filename = r'Interlinear Text Excel Template (80 lines)2.xlsx'
     xl = ExcelInterlinearLoader(filename)
 
-    if False:
+    test_tqdm = False
+    if test_tqdm:
         from tqdm import tqdm
         with tqdm(total=1.0, desc="Processing Excel File") as pbar:
             while xl.next_step is not None:
