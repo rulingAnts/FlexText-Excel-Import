@@ -35,7 +35,7 @@ class Converter(tk.Tk):
         self.inputFormatLabel.grid(row=0, column=0, pady=5, padx=5)
         self.inputFormatCombo = ttk.Combobox(self.mainframe, values=["Excel Interlinear"])
         self.inputFormatCombo.bind('<<ComboboxSelected>>', lambda e: self.inputLoadButton.state(['!disabled']))
-        self.inputFormatCombo.grid(row=0, column=1, pady=5, padx=5)
+        self.inputFormatCombo.grid(row=0, column=1, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.inputLoadButton = ttk.Button(
             self.mainframe, text="Select input file & load",
             state='disabled', command=self.load_file_begin)
@@ -58,8 +58,11 @@ class Converter(tk.Tk):
             "Tools -> Configure -> Interlinear... to set the writing systems for the Word Gloss and Free Translation."
         ])  # TODO: check newer FLEx versions for updated menu paths
         self.reminderLabel = ttk.Label(self.mainframe, text=reminderText)
-        self.reminderLabel.grid(row=3, column=0, columnspan=3, pady=5, padx=5)
-        self.reminderLabel.config(wraplength=450)
+        self.reminderLabel.grid(row=3, column=0, columnspan=3, pady=5, padx=5, sticky=(tk.W, tk.E))
+        self.reminderLabel.config(wraplength=1)  # Initial value, updated to match width of window
+        def update_wraplength(event):
+            self.reminderLabel.config(wraplength=event.width)
+        self.reminderLabel.bind('<Configure>', update_wraplength)
 
     # Writing systems frame
         self.wsFrame = ttk.Frame(self.mainframe)
@@ -85,7 +88,7 @@ class Converter(tk.Tk):
         self.outputFormatLabel.grid(row=8, column=0, pady=5, padx=5)
         self.outputFormatCombo = ttk.Combobox(self.mainframe, values=["FlexText Interlinear"])
         self.outputFormatCombo.bind('<<ComboboxSelected>>', lambda e: self.update_convert_button_state())
-        self.outputFormatCombo.grid(row=8, column=1, pady=5, padx=5)
+        self.outputFormatCombo.grid(row=8, column=1, pady=5, padx=5, sticky=(tk.W, tk.E))
         self.convertButton = ttk.Button(self.mainframe, text="Select output file & convert", state='disabled', command=self.convert)
         self.convertButton.grid(row=8, column=2, pady=5, padx=5)
         self.convertProgressLabel = ttk.Label(self.mainframe, text="")
@@ -100,16 +103,20 @@ class Converter(tk.Tk):
         # Add a Text widget and vertical scrollbar for error display directly to mainframe
         default_font = ttk.Style().lookup('TLabel', 'font')
         self.errorDisplay = tk.Text(
-            self.mainframe, wrap='word', height=9, width=50, state='disabled', 
-            borderwidth=2, relief='sunken', font=default_font, 
+            self.mainframe, wrap='word', height=9, width=50, state='disabled',
+            borderwidth=2, relief='sunken', font=default_font,
             yscrollcommand=lambda *args: self.errorDisplayScrollbar.set(*args))
         self.errorDisplay.grid(row=11, column=0, columnspan=3, pady=5, padx=(5,0), sticky=(tk.N, tk.S, tk.W, tk.E))
         self.errorDisplayScrollbar = ttk.Scrollbar(self.mainframe, orient='vertical', command=self.errorDisplay.yview)
         self.errorDisplayScrollbar.grid(row=11, column=3, sticky=(tk.N, tk.S, tk.W))
 
+        # Make mainframe expand with main window
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+        # Make center column expand horizontally with main window
         self.mainframe.columnconfigure(1, weight=1)
-        self.mainframe.columnconfigure(3, weight=0)
-        self.mainframe.rowconfigure(10, weight=1)
+        # Make error message box expand vertically with main window
+        self.mainframe.rowconfigure(11, weight=1)
 
     def add_error_msg(self, errorString):
         """
