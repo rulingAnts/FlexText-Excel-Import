@@ -6,11 +6,13 @@ This repository hosts a utility designed to streamline the process of transcript
 
 The primary goal is to provide a user-friendly format (Excel spreadsheet) for native speakers who may not be familiar with complex linguistic software, allowing them to easily contribute interlinearized text data.
 
-## GUI Version
+## Easy Version
 
-A graphical user interface (GUI) is available for selecting an input Excel file and converting it into a FlexText XML file, which is FLEx-compatible. As in the CLI version, the data is converted into an intermediate custom XML format in memory, before being written into a `*.flextext` file. (In the GUI version, the intermediate XML file is not written to disk.)
+Download the app and the Excel templates [here](https://github.com/rulingAnts/FlexText-Excel-Import/releases/latest). Be sure to download both the portable app (exe file) and the Excel templates (zip file). Use one of the excel templates to enter a text back translation (or have a mother-tongue-speaking colleague use it for that) and then double click the app to convert the Excel sheet into a file type that FLEx can import. Then go to File > Import... > FlexText Interlinear...
 
-## CLI Version
+You will need to make sure that your writing system codes match what you enter at the top of the excel sheet (to the right of the title, names, etc), and also make sure that while you're working on that text, you order your writing systems in writing system settings and in interlinear settings to match what is in the top of the excel sheet. Otherwise you'll see nothing. But if your writing system codes are correct in the sheet, and your writing system settings and interlinear settings match (each tab has its own interlinear settings and the text chart only matches the project-wide settings), then it will display correctly. This is a limitation in the way FLEx works, but once you learn how to adjust writing system and interlinear settings, it's mildly annoying, but still usable. If you're using the same glossing language and vernacular writing system as your mother-tongue-speaking colleague, then you will not have that problem.
+
+## For advanced, programming geeks like me: CLI Version
 
 The command-line interface (CLI) is still supported, through **Python scripts** which perform a two-stage conversion process:
 
