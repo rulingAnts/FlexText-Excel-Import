@@ -286,6 +286,30 @@
                     You may need to add an exception.</li>
             </ul>
 
+            <h3>📊 FLEx Text Chart Limitations</h3>
+            <p>
+                <strong>Important:</strong> When working with text charts in FLEx, be aware of these limitations:
+            </p>
+            <ul>
+                <li><strong>Text Chart uses project-wide settings only:</strong> When you switch to the Text Charting tab, 
+                    the chart will only display your project-wide writing system settings. It displays <strong>word glosses only</strong> 
+                    (not morpheme glosses) and only the first vernacular language and first analysis language.</li>
+                <li><strong>No writing system selection for charts:</strong> There's no way to link to morpheme glosses or select 
+                    a different writing system for the text chart other than whichever is at the top of your vernacular and analysis 
+                    writing system lists.</li>
+                <li><strong>Workaround for different settings:</strong> If you need to use different writing systems for a text chart 
+                    than you're using in the rest of the project, you'll need to temporarily change the global project settings 
+                    while working on the chart, then change them back when you need your preferred setup again.</li>
+                <li><strong>Interlinear settings are tab-specific:</strong> Remember that interlinear settings (not writing system settings) 
+                    in FLEx's Interlinear Text view are specific to each tab, including the interlinear pane for adding words to the 
+                    chart at the bottom pane of the Text Chart tab.</li>
+                <li><strong>Export settings:</strong> The <strong>Print tab</strong> controls what will be exported when you use 
+                    Microsoft Word, PDF, XLingPaper, etc. Before exporting interlinear text, make sure you're happy with the 
+                    interlinear and writing system settings on that tab.</li>
+                <li><strong>Text chart export limitations:</strong> Text chart export will use only the global project writing system 
+                    settings with vernacular words and word glosses—no morpheme-level information.</li>
+            </ul>
+
             <h3>🐛 Known Bugs</h3>
             <p>
                 For the latest bug reports and to report new issues, please visit the 
@@ -400,6 +424,43 @@
                 </ul>
                 Visit the <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">GitHub repository</a> 
                 to get started.</p>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <h2>Next Steps: Advanced Discourse Analysis</h2>
+            <p>
+                Once you've successfully imported your interlinear text into FLEx and completed your text charting 
+                (including tagging and notes), you can take your analysis further with discourse analysis tools.
+            </p>
+            
+            <div class="feature-box" style="margin: 20px 0;">
+                <h3>📊 FLEx Discourse Chart Analysis Tool (FDAT)</h3>
+                <p>
+                    The <a href="https://rulingants.github.io/fdat/" target="_blank"><strong>FLEx Discourse Chart Analysis Tool (FDAT)</strong></a> 
+                    is a companion application that allows you to perform advanced discourse analysis on your FLEx text charts.
+                </p>
+                
+                <h4>How to use FDAT:</h4>
+                <ol>
+                    <li>Complete your text chart in FLEx, including all tagging and notes</li>
+                    <li>Export your text chart as <strong>Discourse Chart XML</strong> from FLEx:
+                        <ul>
+                            <li>In FLEx, go to your Text Chart tab</li>
+                            <li>Select <strong>File → Export...</strong></li>
+                            <li>Choose <strong>Discourse Chart XML</strong> as the export format</li>
+                        </ul>
+                    </li>
+                    <li>Visit <a href="https://rulingants.github.io/fdat/" target="_blank">https://rulingants.github.io/fdat/</a></li>
+                    <li>Import your exported Discourse Chart XML file into the FDAT application</li>
+                    <li>Analyze your discourse structure with advanced visualization and analysis features</li>
+                </ol>
+                
+                <p>
+                    <a href="https://rulingants.github.io/fdat/" target="_blank" class="download-button" style="display: inline-block;">
+                        Visit FDAT →
+                    </a>
+                </p>
             </div>
         </section>
 
