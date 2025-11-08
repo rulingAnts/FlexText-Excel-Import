@@ -1,5 +1,7 @@
 # Native-Speaker Excel Transcription/Back-Translation Tool
 
+> 📖 **[Visit the user-friendly website](https://rulingants.github.io/FlexText-Excel-Import/)** for complete documentation, downloads, and tutorials!
+
 ## Overview
 
 This repository hosts a utility designed to streamline the process of transcription and back-translation for minority language texts. It pairs a structured [**Excel Template**](https://raw.githubusercontent.com/rulingAnts/FlexText-Excel-Import/refs/heads/main/Interlinear%20Text%20Excel%20Template.xltx) with a Python-based converter that generates **FlexText** files suitable for direct import into **Fieldworks Language Explorer (FLEx)**.
