@@ -23,6 +23,7 @@
                 <li><a href="#how-to-use">How to Use</a></li>
                 <li><a href="#limitations">Limitations</a></li>
                 <li><a href="#faq">FAQ</a></li>
+                <li><a href="writing-system-codes.html">Writing System Codes</a></li>
             </ul>
         </div>
     </nav>
@@ -127,7 +128,7 @@
                         <h3>Fill in the Template</h3>
                         <p>Open one of the Excel templates (choose the size based on your text length). 
                            Fill in your text data following the template structure. Make sure to fill in the 
-                           writing system codes at the top of the sheet to match your FLEx project.</p>
+                                    writing system codes at the top of the sheet to match your FLEx project. <strong>Use the "Code" value from FLEx writing system settings (not Abbreviation).</strong> See <a href="writing-system-codes.html">Writing System Codes</a>.</p>
                     </div>
                 </div>
                 
@@ -166,7 +167,7 @@
                 </li>
                 <li>Open the template in Microsoft Excel or a compatible program</li>
                 <li><strong>Important:</strong> Fill in the writing system codes in the header section 
-                    (top right of the sheet). These codes must match your FLEx project settings:
+                    (top right of the sheet). These codes must match your FLEx project settings. Use the FLEx <em>Code</em> value from the General tab (do NOT use Abbreviation or language name). See <a href="writing-system-codes.html">Writing System Codes</a> for details:
                     <ul>
                         <li><strong>Vernacular writing system:</strong> Usually a 2-3 letter language code (e.g., "en", "spa", "qaa")</li>
                         <li><strong>Gloss writing system:</strong> The language code for word glosses</li>
@@ -206,7 +207,7 @@
                 <li><strong>Important:</strong> Before importing, configure your writing systems in FLEx:
                     <ul>
                         <li>Go to <strong>Tools → Configure → Writing Systems...</strong></li>
-                        <li>Ensure your vernacular and analysis writing systems are set up</li>
+                        <li>Ensure your vernacular and analysis writing systems are set up using the correct <strong>Code</strong> values (not Abbreviation)</li>
                         <li>Go to <strong>Tools → Configure → Interlinear...</strong> (in the Gloss or Analyze tab)</li>
                         <li>Set the writing systems for Word Gloss and Free Translation</li>
                         <li>Make sure these match the codes you used in your Excel template</li>
@@ -236,7 +237,7 @@
                 The most common issue users encounter is with writing system settings. FLEx requires that:
             </p>
             <ul>
-                <li>Writing system codes in your Excel file <strong>exactly match</strong> those in your FLEx project</li>
+                <li>Writing system codes in your Excel file <strong>exactly match</strong> those in your FLEx project (use the <strong>Code</strong> field; not Abbreviation)</li>
                 <li>Writing systems must be configured in both the project-wide settings AND individual text settings</li>
                 <li>The order of writing systems in FLEx's interlinear settings should match your template</li>
             </ul>
@@ -319,7 +320,7 @@
                     <li>"fr" or "fra" for French</li>
                     <li>Your specific language's ISO 639 code</li>
                 </ul>
-                Check your FLEx project settings to see which codes you're using.</p>
+                Copy the value labeled <strong>Code</strong> (not Abbreviation) from the General tab in <em>Tools → Configure → Writing Systems…</em>. See <a href="writing-system-codes.html">Writing System Codes</a>.</p>
             </div>
 
             <div class="faq-item">

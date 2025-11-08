@@ -14,6 +14,10 @@ Download the app and the Excel templates [here](https://github.com/rulingAnts/Fl
 
 You will need to make sure that your writing system codes match what you enter at the top of the excel sheet (to the right of the title, names, etc), and also make sure that while you're working on that text, you order your writing systems in writing system settings and in interlinear settings to match what is in the top of the excel sheet. Otherwise you'll see nothing. But if your writing system codes are correct in the sheet, and your writing system settings and interlinear settings match (each tab has its own interlinear settings and the text chart only matches the project-wide settings), then it will display correctly. This is a limitation in the way FLEx works, but once you learn how to adjust writing system and interlinear settings, it's mildly annoying, but still usable. If you're using the same glossing language and vernacular writing system as your mother-tongue-speaking colleague, then you will not have that problem.
 
+> **Critical Warning:** When entering writing system identifiers, use the value labeled **Code** in FLEx's *Tools → Configure → Writing Systems…* dialog (General tab). **Do NOT use** the *Abbreviation* or the language name. If the codes in your Excel sheet do not exactly match existing codes, FLEx will silently create **new writing systems** and your imported data will be placed there, causing duplicates you must later clean up.
+
+See: **[Writing System Codes (detailed guide)](docs/writing-system-codes.html)**
+
 ## For advanced, programming geeks like me: CLI Version
 
 The command-line interface (CLI) is still supported, through **Python scripts** which perform a two-stage conversion process:
@@ -48,7 +52,7 @@ pip install openpyxl lxml
 
 1. Download and fill out the **Excel Template** ([`Interlinear Text Excel Template.xltx`](https://raw.githubusercontent.com/rulingAnts/FlexText-Excel-Import/refs/heads/main/Interlinear%20Text%20Excel%20Template.xltx)).
 
-2. Ensure the writing system codes in the header are filled correctly with 2- or 3-letter language codes to match the fields in your FLEx database.
+2. Ensure the writing system codes in the header are filled correctly using the **Code** values from your FLEx project (not Abbreviation or language name). See [docs/writing-system-codes.html](docs/writing-system-codes.html).
   
 3. Save your completed transcription spreadsheet as an `.xlsx` file (e.g., `MyStory.xlsx`).
   

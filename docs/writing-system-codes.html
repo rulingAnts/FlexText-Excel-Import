@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing System Codes — FlexText Excel Import</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .callout-warning { background: #fff4e5; border-left: 4px solid #f0ad4e; padding: 1rem; margin: 1rem 0; }
+        .screenshot { text-align: center; margin: 1.5rem 0; }
+        .screenshot img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 6px; }
+        .small { color: #666; font-size: 0.9rem; }
+    </style>
+    <meta name="description" content="How to find and use the correct FLEx writing system codes. Avoid duplicate writing systems by matching codes exactly.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://rulingants.github.io/FlexText-Excel-Import/writing-system-codes.html">
+    <meta property="og:title" content="Writing System Codes — FlexText Excel Import">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rulingants.github.io/FlexText-Excel-Import/writing-system-codes.html">
+    <meta property="og:description" content="Use the Code value from FLEx Writing Systems settings. Do not use Abbreviation or Language Name.">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Writing System Codes</h1>
+            <p class="tagline">These must match your FLEx project exactly</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#download">Download</a></li>
+                <li><a href="index.html#quick-start">Quick Start</a></li>
+                <li><a href="index.html#how-to-use">How to Use</a></li>
+                <li><a href="index.html#limitations">Limitations</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section>
+            <div class="callout-warning">
+                <strong>Important:</strong> If the writing system codes in your Excel sheet (or those you enter in the converter)
+                do <em>not</em> exactly match the codes already defined in your FLEx project, FLEx will create <strong>new writing systems</strong>
+                and your imported data will be placed there. This leads to duplicates and a messy cleanup. Always use the exact codes from your FLEx project.
+            </div>
+
+            <h2>Which code to use</h2>
+            <p>
+                Use the value labeled <strong>Code</strong> on the <em>General</em> tab of the Writing System properties. <br>
+                <strong>Do not use</strong> the <em>Abbreviation</em> or the language name text.
+            </p>
+
+            <h3>Where to find it in FLEx</h3>
+            <ol>
+                <li>Open FLEx → <strong>Tools → Configure → Writing Systems…</strong></li>
+                <li>Select the relevant writing system
+                    <ul>
+                        <li><strong>Vernacular</strong> for the baseline text</li>
+                        <li><strong>Analysis</strong> for Gloss and Free Translation</li>
+                    </ul>
+                </li>
+                <li>Go to the <strong>General</strong> tab and copy the value in <strong>Code</strong> (e.g., <code>grc</code>).</li>
+            </ol>
+
+            <div class="screenshot">
+                <img src="images/vern_writ_sys.png" alt="FLEx Writing System properties – use the Code value (e.g., grc). Do not use Abbreviation or Language Name.">
+                <p class="small">Use the <strong>Code</strong> value (circled in the screenshot). Do not use <em>Abbreviation</em> or <em>Language Name</em>.</p>
+            </div>
+
+            <h2>Enter these codes in the converter</h2>
+            <ul>
+                <li><strong>Vernacular Writing System:</strong> your project’s Vernacular <em>Code</em></li>
+                <li><strong>Gloss Writing System:</strong> the Analysis <em>Code</em> used for word glosses</li>
+                <li><strong>Free Translation Writing System:</strong> the Analysis <em>Code</em> used for free translations</li>
+            </ul>
+            <p class="small">
+                Codes are BCP&nbsp;47 tags (e.g., <code>en</code>, <code>grc</code>, <code>es-419</code>, or custom tags). Enter them <em>exactly</em> as shown in FLEx (including case).
+            </p>
+
+            <h2>If you already imported with the wrong codes</h2>
+            <ol>
+                <li>Open <strong>Tools → Configure → Writing Systems…</strong></li>
+                <li>Remove the unintended/duplicate writing systems FLEx created</li>
+                <li>Re-import using the correct codes</li>
+            </ol>
+
+            <h2>Pre-import checklist</h2>
+            <ul>
+                <li>Vernacular Code matches exactly</li>
+                <li>Gloss/Analysis Code matches exactly</li>
+                <li>Free Translation/Analysis Code matches exactly</li>
+                <li>No stray spaces; case matches</li>
+            </ul>
+
+            <p><a href="index.html">← Back to Home</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <strong>FlexText Excel Import</strong> |
+                <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
