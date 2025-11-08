@@ -166,12 +166,22 @@
                 </li>
                 <li>Open the template in Microsoft Excel or a compatible program</li>
                 <li><strong>Important:</strong> Fill in the writing system codes in the header section 
-                    (top right of the sheet). These codes must match your FLEx project settings:
+                    (top right of the sheet). These codes must match your FLEx project settings.
+                    <br><br>
+                    <strong>To find the correct codes in your FLEx project:</strong>
                     <ul>
-                        <li><strong>Vernacular writing system:</strong> Usually a 2-3 letter language code (e.g., "en", "spa", "qaa")</li>
-                        <li><strong>Gloss writing system:</strong> The language code for word glosses</li>
-                        <li><strong>Free translation writing system:</strong> The language code for free translations</li>
+                        <li><strong>Vernacular writing system:</strong> In FLEx, go to <strong>Tools → Configure → Writing Systems...</strong> 
+                            and look under "Vernacular Writing Systems". Use the code shown (usually a 2-3 letter language code 
+                            like "en", "spa", "qaa").</li>
+                        <li><strong>Gloss writing system:</strong> In the same Writing Systems dialog, look under 
+                            "Analysis Writing Systems" for the writing system you use for word glosses. 
+                            This is typically an analytical language like English ("en").</li>
+                        <li><strong>Free translation writing system:</strong> Also under "Analysis Writing Systems", 
+                            find the writing system you use for free translations. This is often the same as your gloss 
+                            writing system.</li>
                     </ul>
+                    <strong>Note:</strong> The codes you enter in the Excel template must <em>exactly match</em> the codes 
+                    shown in FLEx's Writing Systems configuration.
                 </li>
                 <li>Enter your text data in the appropriate columns:
                     <ul>
@@ -314,14 +324,23 @@
 
             <div class="faq-item">
                 <h3>Q: What writing system codes should I use?</h3>
-                <p><strong>A:</strong> Use the same codes that are already set up in your FLEx project. Common examples:
+                <p><strong>A:</strong> Use the same codes that are already set up in your FLEx project. 
+                To find them:
+                <ol>
+                    <li>Open your FLEx project</li>
+                    <li>Go to <strong>Tools → Configure → Writing Systems...</strong></li>
+                    <li>Look under <strong>"Vernacular Writing Systems"</strong> for your vernacular code</li>
+                    <li>Look under <strong>"Analysis Writing Systems"</strong> for your gloss and free translation codes</li>
+                    <li>Use the exact codes shown (they're usually 2-3 letters)</li>
+                </ol>
+                Common examples:
                 <ul>
                     <li>"en" for English</li>
                     <li>"es" or "spa" for Spanish</li>
                     <li>"fr" or "fra" for French</li>
                     <li>Your specific language's ISO 639 code</li>
                 </ul>
-                Check your FLEx project settings to see which codes you're using.</p>
+                <strong>Important:</strong> The codes in your Excel file must exactly match the codes in FLEx.</p>
             </div>
 
             <div class="faq-item">
