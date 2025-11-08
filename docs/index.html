@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexText Excel Import - Easy Interlinear Text Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>FlexText Excel Import</h1>
+            <p class="tagline">Convert Excel transcriptions to FLEx interlinear texts with ease</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#how-to-use">How to Use</a></li>
+                <li><a href="#limitations">Limitations</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="about">
+            <h2>About This Tool</h2>
+            <p>
+                The FlexText Excel Import tool is designed to make transcription and back-translation of minority 
+                language texts easier for everyone, especially native speakers who may not be familiar with complex 
+                linguistic software.
+            </p>
+            <p>
+                Instead of working directly in FLEx (Fieldworks Language Explorer), you can use a familiar Excel 
+                spreadsheet to enter your text data. Then, with a simple click, this tool converts your Excel file 
+                into a FlexText format that FLEx can import directly.
+            </p>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>✨ Easy to Use</h3>
+                    <p>No programming knowledge required. Just fill in the Excel template and click convert.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📝 Familiar Format</h3>
+                    <p>Work in Excel, a tool most people already know and understand.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🚀 Fast Conversion</h3>
+                    <p>Convert your data to FLEx-compatible format in seconds.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="download">
+            <h2>Download</h2>
+            <p class="important">
+                You need to download <strong>both</strong> the application and the Excel templates to use this tool.
+            </p>
+            
+            <div class="download-section">
+                <h3>Latest Version: v1.1.0</h3>
+                
+                <div class="download-boxes">
+                    <div class="download-box">
+                        <h4>🖥️ Windows Application</h4>
+                        <p>Portable executable - no installation required</p>
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.1.0/convert_interlinear_gui.exe" 
+                           class="download-button">
+                            Download for Windows (.exe)
+                        </a>
+                        <p class="file-size">Size: ~41 MB</p>
+                    </div>
+                    
+                    <div class="download-box">
+                        <h4>📋 Excel Templates</h4>
+                        <p>Three template sizes: 80, 200, and 1000 lines</p>
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.1.0/Excel.Templates.zip" 
+                           class="download-button">
+                            Download Templates (.zip)
+                        </a>
+                        <p class="file-size">Size: ~117 KB</p>
+                    </div>
+                </div>
+                
+                <div class="download-note">
+                    <h4>📦 All Releases</h4>
+                    <p>
+                        View all versions and additional downloads on the 
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/latest" target="_blank">
+                            GitHub Releases page
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="os-support">
+                <h3>Operating System Support</h3>
+                <ul>
+                    <li><strong>✅ Windows:</strong> Download and run the .exe file directly (no installation needed)</li>
+                    <li><strong>⚠️ macOS/Linux:</strong> Currently requires Python installation and running from source. 
+                        See the <a href="https://github.com/rulingAnts/FlexText-Excel-Import#for-advanced-programming-geeks-like-me-cli-version" target="_blank">
+                        advanced instructions on GitHub</a>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="quick-start">
+            <h2>Quick Start Guide</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download and Extract</h3>
+                        <p>Download both the Windows application (.exe) and the Excel templates (.zip). 
+                           Extract the templates from the zip file to a location on your computer.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Fill in the Template</h3>
+                        <p>Open one of the Excel templates (choose the size based on your text length). 
+                           Fill in your text data following the template structure. Make sure to fill in the 
+                           writing system codes at the top of the sheet to match your FLEx project.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Convert</h3>
+                        <p>Double-click the converter application (.exe file). Select your Excel file as input, 
+                           choose where to save the output, and click Convert.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Import into FLEx</h3>
+                        <p>Open FLEx and switch to the <strong>Interlinear Text view</strong> (you must be in this view 
+                           to see the import option). Then go to <strong>File → Import → Interlinear Text...</strong> and 
+                           select your generated .flextext file.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to-use">
+            <h2>How to Use - Detailed Instructions</h2>
+            
+            <h3>Step 1: Prepare Your Excel File</h3>
+            <ol>
+                <li>Choose one of the three template sizes based on your text:
+                    <ul>
+                        <li><strong>80 lines:</strong> Short texts or stories</li>
+                        <li><strong>200 lines:</strong> Medium-length texts</li>
+                        <li><strong>1000 lines:</strong> Long texts or extended narratives</li>
+                    </ul>
+                </li>
+                <li>Open the template in Microsoft Excel or a compatible program</li>
+                <li><strong>Important:</strong> Fill in the writing system codes in the header section 
+                    (top right of the sheet). These codes must match your FLEx project settings.
+                    <br><br>
+                    <strong>To find the correct codes in your FLEx project:</strong>
+                    <ul>
+                        <li><strong>Vernacular writing system:</strong> In FLEx, go to <strong>Tools → Configure → Writing Systems...</strong> 
+                            and look under "Vernacular Writing Systems". Use the code shown (usually a 2-3 letter language code 
+                            like "en", "spa", "qaa").</li>
+                        <li><strong>Gloss writing system:</strong> In the same Writing Systems dialog, look under 
+                            "Analysis Writing Systems" for the writing system you use for word glosses. 
+                            This is typically an analytical language like English ("en").</li>
+                        <li><strong>Free translation writing system:</strong> Also under "Analysis Writing Systems", 
+                            find the writing system you use for free translations. This is often the same as your gloss 
+                            writing system.</li>
+                    </ul>
+                    <strong>Note:</strong> The codes you enter in the Excel template must <em>exactly match</em> the codes 
+                    shown in FLEx's Writing Systems configuration.
+                </li>
+                <li>Enter your text data in the appropriate columns:
+                    <ul>
+                        <li>Original language text in the vernacular column</li>
+                        <li>Word-by-word glosses in the gloss column</li>
+                        <li>Free translations (sentence/paragraph level) in the free translation column</li>
+                    </ul>
+                </li>
+                <li>Save your completed file as an Excel workbook (.xlsx)</li>
+            </ol>
+
+            <h3>Step 2: Run the Converter</h3>
+            <ol>
+                <li>Double-click the <code>convert_interlinear_gui.exe</code> file</li>
+                <li>A window will open with the converter interface</li>
+                <li>Select <strong>"Excel Interlinear"</strong> as the input format (should be default)</li>
+                <li>Click <strong>"Select input file & load"</strong> and choose your Excel file</li>
+                <li>Wait for the file to load (progress bar will show status)</li>
+                <li>Review the writing systems displayed to ensure they match your expectations</li>
+                <li>Select <strong>"FlexText Interlinear"</strong> as the output format</li>
+                <li>Click <strong>"Select output file & convert"</strong></li>
+                <li>Choose where to save the output file (same name as input with .flextext extension is suggested)</li>
+                <li>Wait for conversion to complete</li>
+            </ol>
+
+            <h3>Step 3: Import into FLEx</h3>
+            <ol>
+                <li>Open your FLEx project</li>
+                <li><strong>Important:</strong> Switch to the <strong>Interlinear Text view</strong> in FLEx. 
+                    The import option will not be visible if you're in another view (such as Lists, Data Notebook, 
+                    or Lexicon view). Look for "Texts & Words" in the menu bar to access Interlinear Text view.</li>
+                <li><strong>Important:</strong> Before importing, configure your writing systems in FLEx:
+                    <ul>
+                        <li>Go to <strong>Tools → Configure → Writing Systems...</strong></li>
+                        <li>Ensure your vernacular and analysis writing systems are set up</li>
+                        <li>Go to <strong>Tools → Configure → Interlinear...</strong> (in the Gloss or Analyze tab)</li>
+                        <li>Set the writing systems for Word Gloss and Free Translation</li>
+                        <li>Make sure these match the codes you used in your Excel template</li>
+                    </ul>
+                </li>
+                <li>Go to <strong>File → Import → Interlinear Text...</strong></li>
+                <li>Select your generated .flextext file</li>
+                <li>Follow FLEx's import prompts</li>
+                <li>Your text should now appear in FLEx as an interlinear text</li>
+            </ol>
+
+            <h3>Tips for Success</h3>
+            <ul>
+                <li><strong>Writing system codes must match exactly</strong> between your Excel file and FLEx project</li>
+                <li>If you don't see your text after importing, check your writing system settings in FLEx</li>
+                <li>The order of writing systems in FLEx's interlinear settings should match your Excel template</li>
+                <li>Each text/tab in FLEx has its own interlinear settings - configure them individually</li>
+                <li>Start with a small test file to ensure your setup is correct before converting larger texts</li>
+            </ul>
+        </section>
+
+        <section id="limitations">
+            <h2>Known Limitations and Issues</h2>
+            
+            <h3>⚠️ Writing System Configuration</h3>
+            <p>
+                The most common issue users encounter is with writing system settings. FLEx requires that:
+            </p>
+            <ul>
+                <li>Writing system codes in your Excel file <strong>exactly match</strong> those in your FLEx project</li>
+                <li>Writing systems must be configured in both the project-wide settings AND individual text settings</li>
+                <li>The order of writing systems in FLEx's interlinear settings should match your template</li>
+            </ul>
+            <p>
+                <strong>Symptom:</strong> You import a file but see nothing displayed in FLEx.<br>
+                <strong>Solution:</strong> Check and adjust your writing system settings as described in the "How to Use" section above.
+            </p>
+
+            <h3>🖥️ Platform Availability</h3>
+            <ul>
+                <li><strong>Windows:</strong> Fully supported with standalone executable</li>
+                <li><strong>macOS and Linux:</strong> Currently requires Python 3.8+ and manual setup. 
+                    Advanced users can run from source code following the 
+                    <a href="https://github.com/rulingAnts/FlexText-Excel-Import#setup-and-gui-usage" target="_blank">
+                    developer instructions on GitHub</a>.</li>
+            </ul>
+
+            <h3>📋 Excel Compatibility</h3>
+            <ul>
+                <li>Only works with files created from the provided templates</li>
+                <li>Custom Excel structures are not supported</li>
+                <li>Must be saved as .xlsx format (not .xls or .csv)</li>
+            </ul>
+
+            <h3>📝 Data Limitations</h3>
+            <ul>
+                <li>Complex formatting in Excel cells may not transfer correctly</li>
+                <li>Template must be used as-is; adding or removing columns will break the converter</li>
+                <li>Very large files (thousands of lines) may take longer to process</li>
+            </ul>
+
+            <h3>🔧 Technical Issues</h3>
+            <ul>
+                <li>Windows may show a security warning when running the .exe file (this is normal for unsigned applications). 
+                    Click "More info" and then "Run anyway" if you trust the source.</li>
+                <li>Some antivirus software may flag the executable as suspicious (false positive). 
+                    You may need to add an exception.</li>
+            </ul>
+
+            <h3>📊 FLEx Text Chart Limitations</h3>
+            <p>
+                <strong>Important:</strong> When working with text charts in FLEx, be aware of these limitations:
+            </p>
+            <ul>
+                <li><strong>Text Chart uses project-wide settings only:</strong> When you switch to the Text Charting tab, 
+                    the chart will only display your project-wide writing system settings. It displays <strong>word glosses only</strong> 
+                    (not morpheme glosses) and only the first vernacular language and first analysis language.</li>
+                <li><strong>No writing system selection for charts:</strong> There's no way to link to morpheme glosses or select 
+                    a different writing system for the text chart other than whichever is at the top of your vernacular and analysis 
+                    writing system lists.</li>
+                <li><strong>Workaround for different settings:</strong> If you need to use different writing systems for a text chart 
+                    than you're using in the rest of the project, you'll need to temporarily change the global project settings 
+                    while working on the chart, then change them back when you need your preferred setup again.</li>
+                <li><strong>Interlinear settings are tab-specific:</strong> Remember that interlinear settings (not writing system settings) 
+                    in FLEx's Interlinear Text view are specific to each tab, including the interlinear pane for adding words to the 
+                    chart at the bottom pane of the Text Chart tab.</li>
+                <li><strong>Export settings:</strong> The <strong>Print tab</strong> controls what will be exported when you use 
+                    Microsoft Word, PDF, XLingPaper, etc. Before exporting interlinear text, make sure you're happy with the 
+                    interlinear and writing system settings on that tab.</li>
+                <li><strong>Text chart export limitations:</strong> Text chart export will use only the global project writing system 
+                    settings with vernacular words and word glosses—no morpheme-level information.</li>
+            </ul>
+
+            <h3>🐛 Known Bugs</h3>
+            <p>
+                For the latest bug reports and to report new issues, please visit the 
+                <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">
+                GitHub Issues page</a>.
+            </p>
+        </section>
+
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>Q: Do I need to install anything?</h3>
+                <p><strong>A:</strong> On Windows, no installation is required. Just download the .exe file and run it. 
+                   On macOS/Linux, you'll need Python 3.8 or newer installed.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Can I use this with LibreOffice or Google Sheets?</h3>
+                <p><strong>A:</strong> The templates are designed for Microsoft Excel, but LibreOffice Calc should work. 
+                   Make sure to save as .xlsx format. Google Sheets may work if you download as .xlsx, but this hasn't 
+                   been extensively tested.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: My text doesn't show up in FLEx after importing. What's wrong?</h3>
+                <p><strong>A:</strong> This is almost always a writing system configuration issue. Check that:
+                <ol>
+                    <li>The writing system codes in your Excel file match those in your FLEx project exactly</li>
+                    <li>You've configured writing systems in Tools → Configure → Writing Systems...</li>
+                    <li>You've configured interlinear settings in Tools → Configure → Interlinear...</li>
+                    <li>The writing systems are in the same order in both places</li>
+                </ol>
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: What writing system codes should I use?</h3>
+                <p><strong>A:</strong> Use the same codes that are already set up in your FLEx project. 
+                To find them:
+                <ol>
+                    <li>Open your FLEx project</li>
+                    <li>Go to <strong>Tools → Configure → Writing Systems...</strong></li>
+                    <li>Look under <strong>"Vernacular Writing Systems"</strong> for your vernacular code</li>
+                    <li>Look under <strong>"Analysis Writing Systems"</strong> for your gloss and free translation codes</li>
+                    <li>Use the exact codes shown (they're usually 2-3 letters)</li>
+                </ol>
+                Common examples:
+                <ul>
+                    <li>"en" for English</li>
+                    <li>"es" or "spa" for Spanish</li>
+                    <li>"fr" or "fra" for French</li>
+                    <li>Your specific language's ISO 639 code</li>
+                </ul>
+                <strong>Important:</strong> The codes in your Excel file must exactly match the codes in FLEx.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Which template size should I use?</h3>
+                <p><strong>A:</strong> Choose based on your text length:
+                <ul>
+                    <li><strong>80 lines:</strong> Short texts, single stories, or when you're just starting</li>
+                    <li><strong>200 lines:</strong> Medium texts, most common use case</li>
+                    <li><strong>1000 lines:</strong> Long narratives or multiple stories in one file</li>
+                </ul>
+                You can always start with a smaller template and switch to a larger one if needed.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Can I modify the Excel template?</h3>
+                <p><strong>A:</strong> You can modify the content and some formatting, but do NOT:
+                <ul>
+                    <li>Add or remove columns</li>
+                    <li>Change the structure of the template</li>
+                    <li>Move the writing system codes section</li>
+                </ul>
+                These changes will break the converter.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Is my language data secure?</h3>
+                <p><strong>A:</strong> Yes. This tool runs completely on your local computer. No data is sent to the 
+                   internet or any external servers. Your Excel files and converted FlexText files stay on your computer.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Can I use this tool for languages other than English?</h3>
+                <p><strong>A:</strong> Absolutely! This tool is specifically designed for minority languages. It supports 
+                   any language that FLEx supports, as long as you configure the writing system codes correctly.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: I'm getting an error message. What should I do?</h3>
+                <p><strong>A:</strong> The converter displays error messages in the bottom panel. Common errors include:
+                <ul>
+                    <li><strong>"Writing system code must be 2 or 3 letters":</strong> Check the codes at the top of your Excel file</li>
+                    <li><strong>"File does not exist":</strong> Make sure you saved your Excel file before trying to convert</li>
+                    <li><strong>Loading errors:</strong> The Excel file may be corrupted or not based on the template</li>
+                </ul>
+                If you can't resolve the error, please report it on the 
+                <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">GitHub Issues page</a>.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Q: Can I contribute to this project?</h3>
+                <p><strong>A:</strong> Yes! This is an open-source project. You can contribute by:
+                <ul>
+                    <li>Reporting bugs or requesting features on GitHub</li>
+                    <li>Submitting code improvements via Pull Requests</li>
+                    <li>Helping translate documentation</li>
+                    <li>Sharing your experience with other users</li>
+                </ul>
+                Visit the <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">GitHub repository</a> 
+                to get started.</p>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <h2>Next Steps: Advanced Discourse Analysis</h2>
+            <p>
+                Once you've successfully imported your interlinear text into FLEx and completed your text charting 
+                (including tagging and notes), you can take your analysis further with discourse analysis tools.
+            </p>
+            
+            <div class="feature-box" style="margin: 20px 0;">
+                <h3>📊 FLEx Discourse Chart Analysis Tool (FDAT)</h3>
+                <p>
+                    The <a href="https://rulingants.github.io/fdat/" target="_blank"><strong>FLEx Discourse Chart Analysis Tool (FDAT)</strong></a> 
+                    is a companion application that allows you to perform advanced discourse analysis on your FLEx text charts.
+                </p>
+                
+                <h4>How to use FDAT:</h4>
+                <ol>
+                    <li>Complete your text chart in FLEx, including all tagging and notes</li>
+                    <li>Export your text chart as <strong>Discourse Chart XML</strong> from FLEx:
+                        <ul>
+                            <li>In FLEx, go to your Text Chart tab</li>
+                            <li>Select <strong>File → Export...</strong></li>
+                            <li>Choose <strong>Discourse Chart XML</strong> as the export format</li>
+                        </ul>
+                    </li>
+                    <li>Visit <a href="https://rulingants.github.io/fdat/" target="_blank">https://rulingants.github.io/fdat/</a></li>
+                    <li>Import your exported Discourse Chart XML file into the FDAT application</li>
+                    <li>Analyze your discourse structure with advanced visualization and analysis features</li>
+                </ol>
+                
+                <p>
+                    <a href="https://rulingants.github.io/fdat/" target="_blank" class="download-button" style="display: inline-block;">
+                        Visit FDAT →
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <section id="support">
+            <h2>Need Help?</h2>
+            <p>If you need additional assistance:</p>
+            <ul>
+                <li>📖 Read the <a href="https://github.com/rulingAnts/FlexText-Excel-Import#readme" target="_blank">
+                    full documentation on GitHub</a></li>
+                <li>🐛 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">
+                    Report bugs or request features</a></li>
+                <li>💬 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/discussions" target="_blank">
+                    Join the discussion</a> (if available)</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <strong>FlexText Excel Import</strong> | 
+                Copyright © 2025 Seth Johnston and Brian Plimley | 
+                Licensed under <a href="https://github.com/rulingAnts/FlexText-Excel-Import/blob/main/LICENSE" target="_blank">
+                AGPL-3.0</a>
+            </p>
+            <p>
+                <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
