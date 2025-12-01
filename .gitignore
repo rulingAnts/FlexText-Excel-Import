@@ -1,3 +1,6 @@
+# Private test data
+private/
+
 # macOS specific files
 .DS_Store
 **/.DS_Store
