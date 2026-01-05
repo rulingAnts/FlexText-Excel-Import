@@ -154,8 +154,8 @@ class Converter(tk.Tk):
         Input:
           metadataElement: the result of metadata.find('writing_system_vernacular'), etc.
         Output:
-          displayText: text to display in GUI (2- or 3-letter code, or "(not found)")
-          isValid: True if writing system code is valid (2 or 3 letters), False otherwise
+          displayText: text to display in GUI (code string, or "(not found)")
+          isValid: True if writing system code is valid (non-empty string), False otherwise
         """
 
         if metadataElement is None:
@@ -166,11 +166,6 @@ class Converter(tk.Tk):
         elif not isinstance(wsText, str):
             self.add_error_msg("❌ Error: writing system code is not a string")
             return "(invalid type)", False
-        elif len(wsText) < 2 or len(wsText) > 3:
-            self.add_error_msg("❌ Error: writing system code must be 2 or 3 letters")
-            if len(wsText) > 8:
-                wsText = wsText[:5] + '...'
-            return "Invalid code: " + wsText, False
         else:
             return wsText, True
 
