@@ -1,5 +1,6 @@
 # Private test data
 private/
+generate_icons.py
 
 # macOS specific files
 .DS_Store
