@@ -17,12 +17,23 @@ $python = Get-Command python -ErrorAction SilentlyContinue
 if (-not $python) { $python = Get-Command py -ErrorAction SilentlyContinue }
 if (-not $python) { Write-Error 'Python interpreter not found (python or py). Install Python 3.x.' }
 
-# Optional: use local venv for reproducible builds
-if (-not (Test-Path '.venv')) { & $python.Path -m venv .venv }
-& .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
+# Use a dedicated Windows venv to avoid conflicts with macOS venvs
+if (-not (Test-Path '.venv-win')) { & $python.Path -m venv .venv-win }
+
+# Resolve venv python across layouts (Scripts vs bin)
+$venvPythonCandidates = @(
+  '.venv-win\Scripts\python.exe',
+  '.venv-win\Scripts\python',
+  '.venv-win\bin\python.exe',
+  '.venv-win\bin\python'
+)
+$venvPython = $venvPythonCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $venvPython) { Write-Error 'Could not locate venv python in .venv-win\Scripts or .venv-win\bin.' }
+
+# Upgrade pip and install deps inside the venv
+& $venvPython -m pip install --upgrade pip
 # Runtime deps used by the app
-python -m pip install pyinstaller openpyxl Pillow
+& $venvPython -m pip install pyinstaller openpyxl Pillow
 
 # Clean previous build artifacts
 Remove-Item -Recurse -Force build, dist -ErrorAction SilentlyContinue
@@ -31,10 +42,10 @@ Remove-Item -Recurse -Force build, dist -ErrorAction SilentlyContinue
 # Notes:
 # - --collect-all openpyxl ensures openpyxl resources are bundled
 # - --noconsole suppresses the console window
-# Generate icon if missing
-if (-not (Test-Path 'assets/app.ico')) { python scripts/generate_icons.py }
+# Generate icon if missing (optional helper; safe to skip if absent)
+if (-not (Test-Path 'assets/app.ico')) { & $venvPython scripts/generate_icons.py }
 
-pyinstaller `
+& $venvPython -m PyInstaller `
   --onefile `
   --noconsole `
   --name "$AppName" `
