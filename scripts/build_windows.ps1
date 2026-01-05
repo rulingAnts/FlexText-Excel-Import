@@ -22,7 +22,7 @@ if (-not (Test-Path '.venv')) { & $python.Path -m venv .venv }
 & .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 # Runtime deps used by the app
-python -m pip install pyinstaller openpyxl
+python -m pip install pyinstaller openpyxl Pillow
 
 # Clean previous build artifacts
 Remove-Item -Recurse -Force build, dist -ErrorAction SilentlyContinue
@@ -31,11 +31,15 @@ Remove-Item -Recurse -Force build, dist -ErrorAction SilentlyContinue
 # Notes:
 # - --collect-all openpyxl ensures openpyxl resources are bundled
 # - --noconsole suppresses the console window
+# Generate icon if missing
+if (-not (Test-Path 'assets/app.ico')) { python scripts/generate_icons.py }
+
 pyinstaller `
   --onefile `
   --noconsole `
   --name "$AppName" `
   --collect-all openpyxl `
+  --icon assets/app.ico `
   "$Entry"
 
 Write-Host "Built exe: dist\$AppName.exe"

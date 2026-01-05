@@ -25,7 +25,7 @@ fi
 source .venv/bin/activate
 python -m pip install --upgrade pip
 # Runtime deps used by the app
-python -m pip install pyinstaller openpyxl
+python -m pip install pyinstaller openpyxl pillow
 
 # Clean previous build artifacts
 rm -rf build dist
@@ -35,12 +35,18 @@ rm -rf build dist
 # - --collect-all openpyxl ensures openpyxl resources are bundled
 # - --windowed suppresses console
 # - --osx-bundle-identifier sets bundle id (helps with signing/notarization later)
+# Generate icon if missing
+if [ ! -f assets/app.icns ]; then
+  python scripts/generate_icons.py || true
+fi
+
 pyinstaller \
   --onedir \
   --windowed \
   --name "$APP_NAME" \
   --collect-all openpyxl \
   --osx-bundle-identifier "$BUNDLE_ID" \
+  --icon assets/app.icns \
   "$ENTRY"
 
 # Locate the built .app bundle
