@@ -76,7 +76,7 @@ if (-not (Test-Path $exePath)) {
   $sevenZipCandidates = @(
     (Join-Path $env:ProgramFiles '7-Zip\7z.exe'),
     (Join-Path ${env:ProgramFiles(x86)} '7-Zip\7z.exe'),
-    (Get-Command 7z -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue)
+    (Get-Command 7z -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue))
   $sevenZip = $sevenZipCandidates | Where-Object { $_ -and (Test-Path $_) } | Select-Object -First 1
   if ($sevenZip) {
     Write-Host "Creating portable zip with 7-Zip: $zipOut"
