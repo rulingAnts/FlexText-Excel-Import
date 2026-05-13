@@ -3,104 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlexText Excel Import - Easy Interlinear Text Tool</title>
+    <title data-i18n="page.title">FlexText Excel Import - Easy Interlinear Text Tool</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="container">
             <h1>FlexText Excel Import</h1>
-            <p class="tagline">Convert Excel transcriptions to FLEx interlinear texts with ease</p>
+            <p class="tagline" data-i18n="header.tagline">Convert Excel transcriptions to FLEx interlinear texts with ease</p>
+        </div>
+        <div class="lang-switcher" id="lang-switcher">
+            <button id="lang-toggle" onclick="i18n.toggleDropdown()" aria-label="Select language">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span id="lang-code">EN</span>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown" hidden>
+                <button onclick="i18n.setLang('en')">English</button>
+                <button onclick="i18n.setLang('id')">Bahasa Indonesia</button>
+            </div>
         </div>
     </header>
 
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#download">Download</a></li>
-                <li><a href="#quick-start">Quick Start</a></li>
-                <li><a href="#how-to-use">How to Use</a></li>
-                <li><a href="#limitations">Limitations</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="writing-system-codes.html">Writing System Codes</a></li>
+                <li><a href="#about" data-i18n="nav.about">About</a></li>
+                <li><a href="#download" data-i18n="nav.download">Download</a></li>
+                <li><a href="#quick-start" data-i18n="nav.quickstart">Quick Start</a></li>
+                <li><a href="#how-to-use" data-i18n="nav.howtouse">How to Use</a></li>
+                <li><a href="#limitations" data-i18n="nav.limitations">Limitations</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                <li><a href="writing-system-codes.html" data-i18n="nav.writingsystem">Writing System Codes</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
         <section id="about">
-            <h2>About This Tool</h2>
-            <p>
-                The FlexText Excel Import tool is designed to make transcription and back-translation of minority 
-                language texts easier for everyone, especially native speakers who may not be familiar with complex 
+            <h2 data-i18n="about.title">About This Tool</h2>
+            <p data-i18n="about.p1">
+                The FlexText Excel Import tool is designed to make transcription and back-translation of minority
+                language texts easier for everyone, especially native speakers who may not be familiar with complex
                 linguistic software.
             </p>
-            <p>
-                Instead of working directly in FLEx (Fieldworks Language Explorer), you can use a familiar Excel 
-                spreadsheet to enter your text data. Then, with a simple click, this tool converts your Excel file 
+            <p data-i18n="about.p2">
+                Instead of working directly in FLEx (Fieldworks Language Explorer), you can use a familiar Excel
+                spreadsheet to enter your text data. Then, with a simple click, this tool converts your Excel file
                 into a FlexText format that FLEx can import directly.
             </p>
             <div class="features">
                 <div class="feature-box">
-                    <h3>✨ Easy to Use</h3>
-                    <p>No programming knowledge required. Just fill in the Excel template and click convert.</p>
+                    <h3 data-i18n="about.feature1.title">✨ Easy to Use</h3>
+                    <p data-i18n="about.feature1.desc">No programming knowledge required. Just fill in the Excel template and click convert.</p>
                 </div>
                 <div class="feature-box">
-                    <h3>📝 Familiar Format</h3>
-                    <p>Work in Excel, a tool most people already know and understand.</p>
+                    <h3 data-i18n="about.feature2.title">📝 Familiar Format</h3>
+                    <p data-i18n="about.feature2.desc">Work in Excel, a tool most people already know and understand.</p>
                 </div>
                 <div class="feature-box">
-                    <h3>🚀 Fast Conversion</h3>
-                    <p>Convert your data to FLEx-compatible format in seconds.</p>
+                    <h3 data-i18n="about.feature3.title">🚀 Fast Conversion</h3>
+                    <p data-i18n="about.feature3.desc">Convert your data to FLEx-compatible format in seconds.</p>
                 </div>
             </div>
         </section>
 
         <section id="download">
-            <h2>Download</h2>
-            <p class="important">
+            <h2 data-i18n="download.title">Download</h2>
+            <p class="important" data-i18n-html="download.both">
                 You need to download <strong>both</strong> the application and the Excel templates to use this tool.
             </p>
-            
+
             <div class="download-section">
-                <h3>Latest Version: v1.2.0</h3>
-                
+                <h3 data-i18n="download.version">Latest Version: v1.2.0</h3>
+
                 <div class="download-boxes">
                     <div class="download-box">
-                        <h4>🍏 macOS Application</h4>
-                        <p>DMG image containing the app bundle</p>
-                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Interlinear-Converter-v1.2.0.mac.dmg" 
-                           class="download-button">
+                        <h4 data-i18n="download.macos.title">🍏 macOS Application</h4>
+                        <p data-i18n="download.macos.desc">DMG image containing the app bundle</p>
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Interlinear-Converter-v1.2.0.mac.dmg"
+                           class="download-button" data-i18n="download.macos.btn">
                             Download for macOS (.dmg)
                         </a>
-                        <p class="file-size">Size: ~19 MB</p>
+                        <p class="file-size" data-i18n="download.macos.size">Size: ~19 MB</p>
                     </div>
                     <div class="download-box">
-                        <h4>🖥️ Windows Application</h4>
-                        <p>Portable executable (zipped) - no installation required</p>
-                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Interlinear.Converter.1.2.0.win.zip" 
-                           class="download-button">
+                        <h4 data-i18n="download.windows.title">🖥️ Windows Application</h4>
+                        <p data-i18n="download.windows.desc">Portable executable (zipped) - no installation required</p>
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Interlinear.Converter.1.2.0.win.zip"
+                           class="download-button" data-i18n="download.windows.btn">
                             Download for Windows (.zip)
                         </a>
-                        <p class="file-size">Size: ~18 MB</p>
+                        <p class="file-size" data-i18n="download.windows.size">Size: ~18 MB</p>
                     </div>
-                    
+
                     <div class="download-box">
-                        <h4>📋 Excel Templates</h4>
-                        <p>Three template sizes: 80, 200, and 1000 lines</p>
-                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Excel.Templates.zip" 
-                           class="download-button">
+                        <h4 data-i18n="download.templates.title">📋 Excel Templates</h4>
+                        <p data-i18n="download.templates.desc">Three template sizes: 80, 200, and 1000 lines</p>
+                        <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/download/v1.2.0/Excel.Templates.zip"
+                           class="download-button" data-i18n="download.templates.btn">
                             Download Templates (.zip)
                         </a>
-                        <p class="file-size">Size: ~117 KB</p>
+                        <p class="file-size" data-i18n="download.templates.size">Size: ~117 KB</p>
                     </div>
                 </div>
-                
+
                 <div class="download-note">
-                    <h4>📦 All Releases</h4>
-                    <p>
-                        View all versions and additional downloads on the 
+                    <h4 data-i18n="download.allreleases.title">📦 All Releases</h4>
+                    <p data-i18n-html="download.allreleases.p">
+                        View all versions and additional downloads on the
                         <a href="https://github.com/rulingAnts/FlexText-Excel-Import/releases/latest" target="_blank">
                             GitHub Releases page
                         </a>.
@@ -109,53 +123,53 @@
             </div>
 
             <div class="os-support">
-                <h3>Operating System Support</h3>
+                <h3 data-i18n="download.ossupport.title">Operating System Support</h3>
                 <ul>
-                    <li><strong>✅ Windows:</strong> Download the .zip, extract, and run the .exe (no installation needed)</li>
-                    <li><strong>✅ macOS (Apple Silicon):</strong> Download the .dmg, drag the app to Applications, then right‑click → Open on first launch to bypass Gatekeeper for unsigned apps</li>
-                    <li><strong>⚠️ Linux:</strong> Currently requires Python and running from source. See the 
+                    <li data-i18n-html="download.ossupport.windows"><strong>✅ Windows:</strong> Download the .zip, extract, and run the .exe (no installation needed)</li>
+                    <li data-i18n-html="download.ossupport.macos"><strong>✅ macOS (Apple Silicon):</strong> Download the .dmg, drag the app to Applications, then right‑click → Open on first launch to bypass Gatekeeper for unsigned apps</li>
+                    <li data-i18n-html="download.ossupport.linux"><strong>⚠️ Linux:</strong> Currently requires Python and running from source. See the
                         <a href="https://github.com/rulingAnts/FlexText-Excel-Import#setup-and-gui-usage" target="_blank">developer instructions</a>.</li>
                 </ul>
             </div>
         </section>
 
         <section id="quick-start">
-            <h2>Quick Start Guide</h2>
+            <h2 data-i18n="quickstart.title">Quick Start Guide</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Download and Extract</h3>
-                        <p>Download both the Windows application (.exe) and the Excel templates (.zip). 
+                        <h3 data-i18n="quickstart.step1.title">Download and Extract</h3>
+                        <p data-i18n="quickstart.step1.desc">Download both the Windows application (.exe) and the Excel templates (.zip).
                            Extract the templates from the zip file to a location on your computer.</p>
                     </div>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Fill in the Template</h3>
-                        <p>Open one of the Excel templates (choose the size based on your text length). 
-                           Fill in your text data following the template structure. Make sure to fill in the 
-                                    writing system codes at the top of the sheet to match your FLEx project. <strong>Use the "Code" value from FLEx writing system settings (not Abbreviation).</strong> See <a href="writing-system-codes.html">Writing System Codes</a>.</p>
+                        <h3 data-i18n="quickstart.step2.title">Fill in the Template</h3>
+                        <p data-i18n-html="quickstart.step2.desc">Open one of the Excel templates (choose the size based on your text length).
+                           Fill in your text data following the template structure. Make sure to fill in the
+                           writing system codes at the top of the sheet to match your FLEx project. <strong>Use the "Code" value from FLEx writing system settings (not Abbreviation).</strong> See <a href="writing-system-codes.html">Writing System Codes</a>.</p>
                     </div>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Convert</h3>
-                        <p>Double-click the converter application (.exe file). Select your Excel file as input, 
+                        <h3 data-i18n="quickstart.step3.title">Convert</h3>
+                        <p data-i18n="quickstart.step3.desc">Double-click the converter application (.exe file). Select your Excel file as input,
                            choose where to save the output, and click Convert.</p>
                     </div>
                 </div>
-                
+
                 <div class="step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Import into FLEx</h3>
-                        <p>Open FLEx and switch to the <strong>Interlinear Text view</strong> (you must be in this view 
-                           to see the import option). Then go to <strong>File → Import → Interlinear Text...</strong> and 
+                        <h3 data-i18n="quickstart.step4.title">Import into FLEx</h3>
+                        <p data-i18n-html="quickstart.step4.desc">Open FLEx and switch to the <strong>Interlinear Text view</strong> (you must be in this view
+                           to see the import option). Then go to <strong>File → Import → Interlinear Text...</strong> and
                            select your generated .flextext file.</p>
                     </div>
                 </div>
@@ -163,19 +177,19 @@
         </section>
 
         <section id="how-to-use">
-            <h2>How to Use - Detailed Instructions</h2>
-            
-            <h3>Step 1: Prepare Your Excel File</h3>
+            <h2 data-i18n="howtouse.title">How to Use - Detailed Instructions</h2>
+
+            <h3 data-i18n="howtouse.step1.title">Step 1: Prepare Your Excel File</h3>
             <ol>
-                <li>Choose one of the three template sizes based on your text:
+                <li data-i18n-html="howtouse.step1.li1">Choose one of the three template sizes based on your text:
                     <ul>
                         <li><strong>80 lines:</strong> Short texts or stories</li>
                         <li><strong>200 lines:</strong> Medium-length texts</li>
                         <li><strong>1000 lines:</strong> Long texts or extended narratives</li>
                     </ul>
                 </li>
-                <li>Open the template in Microsoft Excel or a compatible program</li>
-                <li><strong>Important:</strong> Fill in the writing system codes in the header section 
+                <li data-i18n="howtouse.step1.li2">Open the template in Microsoft Excel or a compatible program</li>
+                <li data-i18n-html="howtouse.step1.li3"><strong>Important:</strong> Fill in the writing system codes in the header section
                     (top right of the sheet). These codes must match your FLEx project settings. Use the FLEx <em>Code</em> value from the General tab (do NOT use Abbreviation or language name). See <a href="writing-system-codes.html">Writing System Codes</a> for details:
                     <ul>
                         <li><strong>Vernacular writing system:</strong> Usually a 2-3 letter language code (e.g., "en", "spa", "qaa")</li>
@@ -183,37 +197,37 @@
                         <li><strong>Free translation writing system:</strong> The language code for free translations</li>
                     </ul>
                 </li>
-                <li>Enter your text data in the appropriate columns:
+                <li data-i18n-html="howtouse.step1.li4">Enter your text data in the appropriate columns:
                     <ul>
                         <li>Original language text in the vernacular column</li>
                         <li>Word-by-word glosses in the gloss column</li>
                         <li>Free translations (sentence/paragraph level) in the free translation column</li>
                     </ul>
                 </li>
-                <li>Save your completed file as an Excel workbook (.xlsx)</li>
+                <li data-i18n="howtouse.step1.li5">Save your completed file as an Excel workbook (.xlsx)</li>
             </ol>
 
-            <h3>Step 2: Run the Converter</h3>
+            <h3 data-i18n="howtouse.step2.title">Step 2: Run the Converter</h3>
             <ol>
-                <li>Double-click the <code>convert_interlinear_gui.exe</code> file</li>
-                <li>A window will open with the converter interface</li>
-                <li>Select <strong>"Excel Interlinear"</strong> as the input format (should be default)</li>
-                <li>Click <strong>"Select input file & load"</strong> and choose your Excel file</li>
-                <li>Wait for the file to load (progress bar will show status)</li>
-                <li>Review the writing systems displayed to ensure they match your expectations</li>
-                <li>Select <strong>"FlexText Interlinear"</strong> as the output format</li>
-                <li>Click <strong>"Select output file & convert"</strong></li>
-                <li>Choose where to save the output file (same name as input with .flextext extension is suggested)</li>
-                <li>Wait for conversion to complete</li>
+                <li data-i18n-html="howtouse.step2.li1">Double-click the <code>convert_interlinear_gui.exe</code> file</li>
+                <li data-i18n="howtouse.step2.li2">A window will open with the converter interface</li>
+                <li data-i18n-html="howtouse.step2.li3">Select <strong>"Excel Interlinear"</strong> as the input format (should be default)</li>
+                <li data-i18n-html="howtouse.step2.li4">Click <strong>"Select input file &amp; load"</strong> and choose your Excel file</li>
+                <li data-i18n="howtouse.step2.li5">Wait for the file to load (progress bar will show status)</li>
+                <li data-i18n="howtouse.step2.li6">Review the writing systems displayed to ensure they match your expectations</li>
+                <li data-i18n-html="howtouse.step2.li7">Select <strong>"FlexText Interlinear"</strong> as the output format</li>
+                <li data-i18n-html="howtouse.step2.li8">Click <strong>"Select output file &amp; convert"</strong></li>
+                <li data-i18n="howtouse.step2.li9">Choose where to save the output file (same name as input with .flextext extension is suggested)</li>
+                <li data-i18n="howtouse.step2.li10">Wait for conversion to complete</li>
             </ol>
 
-            <h3>Step 3: Import into FLEx</h3>
+            <h3 data-i18n="howtouse.step3.title">Step 3: Import into FLEx</h3>
             <ol>
-                <li>Open your FLEx project</li>
-                <li><strong>Important:</strong> Switch to the <strong>Interlinear Text view</strong> in FLEx. 
-                    The import option will not be visible if you're in another view (such as Lists, Data Notebook, 
-                    or Lexicon view). Look for "Texts & Words" in the menu bar to access Interlinear Text view.</li>
-                <li><strong>Important:</strong> Before importing, configure your writing systems in FLEx:
+                <li data-i18n="howtouse.step3.li1">Open your FLEx project</li>
+                <li data-i18n-html="howtouse.step3.li2"><strong>Important:</strong> Switch to the <strong>Interlinear Text view</strong> in FLEx.
+                    The import option will not be visible if you're in another view (such as Lists, Data Notebook,
+                    or Lexicon view). Look for "Texts &amp; Words" in the menu bar to access Interlinear Text view.</li>
+                <li data-i18n-html="howtouse.step3.li3"><strong>Important:</strong> Before importing, configure your writing systems in FLEx:
                     <ul>
                         <li>Go to <strong>Tools → Configure → Writing Systems...</strong></li>
                         <li>Ensure your vernacular and analysis writing systems are set up using the correct <strong>Code</strong> values (not Abbreviation)</li>
@@ -222,95 +236,95 @@
                         <li>Make sure these match the codes you used in your Excel template</li>
                     </ul>
                 </li>
-                <li>Go to <strong>File → Import → Interlinear Text...</strong></li>
-                <li>Select your generated .flextext file</li>
-                <li>Follow FLEx's import prompts</li>
-                <li>Your text should now appear in FLEx as an interlinear text</li>
+                <li data-i18n-html="howtouse.step3.li4">Go to <strong>File → Import → Interlinear Text...</strong></li>
+                <li data-i18n="howtouse.step3.li5">Select your generated .flextext file</li>
+                <li data-i18n="howtouse.step3.li6">Follow FLEx's import prompts</li>
+                <li data-i18n="howtouse.step3.li7">Your text should now appear in FLEx as an interlinear text</li>
             </ol>
 
-            <h3>Tips for Success</h3>
+            <h3 data-i18n="howtouse.tips.title">Tips for Success</h3>
             <ul>
-                <li><strong>Writing system codes must match exactly</strong> between your Excel file and FLEx project</li>
-                <li>If you don't see your text after importing, check your writing system settings in FLEx</li>
-                <li>The order of writing systems in FLEx's interlinear settings should match your Excel template</li>
-                <li>Each text/tab in FLEx has its own interlinear settings - configure them individually</li>
-                <li>Start with a small test file to ensure your setup is correct before converting larger texts</li>
+                <li data-i18n-html="howtouse.tips.li1"><strong>Writing system codes must match exactly</strong> between your Excel file and FLEx project</li>
+                <li data-i18n="howtouse.tips.li2">If you don't see your text after importing, check your writing system settings in FLEx</li>
+                <li data-i18n="howtouse.tips.li3">The order of writing systems in FLEx's interlinear settings should match your Excel template</li>
+                <li data-i18n="howtouse.tips.li4">Each text/tab in FLEx has its own interlinear settings - configure them individually</li>
+                <li data-i18n="howtouse.tips.li5">Start with a small test file to ensure your setup is correct before converting larger texts</li>
             </ul>
         </section>
 
         <section id="limitations">
-            <h2>Known Limitations and Issues</h2>
-            
-            <h3>⚠️ Writing System Configuration</h3>
-            <p>
+            <h2 data-i18n="limitations.title">Known Limitations and Issues</h2>
+
+            <h3 data-i18n="limitations.writingsystem.title">⚠️ Writing System Configuration</h3>
+            <p data-i18n="limitations.writingsystem.intro">
                 The most common issue users encounter is with writing system settings. FLEx requires that:
             </p>
             <ul>
-                <li>Writing system codes in your Excel file <strong>exactly match</strong> those in your FLEx project (use the <strong>Code</strong> field; not Abbreviation)</li>
-                <li>Writing systems must be configured in both the project-wide settings AND individual text settings</li>
-                <li>The order of writing systems in FLEx's interlinear settings should match your template</li>
+                <li data-i18n-html="limitations.writingsystem.li1">Writing system codes in your Excel file <strong>exactly match</strong> those in your FLEx project (use the <strong>Code</strong> field; not Abbreviation)</li>
+                <li data-i18n="limitations.writingsystem.li2">Writing systems must be configured in both the project-wide settings AND individual text settings</li>
+                <li data-i18n="limitations.writingsystem.li3">The order of writing systems in FLEx's interlinear settings should match your template</li>
             </ul>
-            <p>
+            <p data-i18n-html="limitations.writingsystem.symptom">
                 <strong>Symptom:</strong> You import a file but see nothing displayed in FLEx.<br>
                 <strong>Solution:</strong> Check and adjust your writing system settings as described in the "How to Use" section above.
             </p>
 
-            <h3>🖥️ Platform Availability</h3>
+            <h3 data-i18n="limitations.platform.title">🖥️ Platform Availability</h3>
             <ul>
-                <li><strong>Windows:</strong> Fully supported with standalone executable</li>
-                <li><strong>macOS and Linux:</strong> Currently requires Python 3.8+ and manual setup. 
-                    Advanced users can run from source code following the 
+                <li data-i18n-html="limitations.platform.windows"><strong>Windows:</strong> Fully supported with standalone executable</li>
+                <li data-i18n-html="limitations.platform.macos"><strong>macOS and Linux:</strong> Currently requires Python 3.8+ and manual setup.
+                    Advanced users can run from source code following the
                     <a href="https://github.com/rulingAnts/FlexText-Excel-Import#setup-and-gui-usage" target="_blank">
                     developer instructions on GitHub</a>.</li>
             </ul>
 
-            <h3>📋 Excel Compatibility</h3>
+            <h3 data-i18n="limitations.excel.title">📋 Excel Compatibility</h3>
             <ul>
-                <li>Only works with files created from the provided templates</li>
-                <li>Custom Excel structures are not supported</li>
-                <li>Must be saved as .xlsx format (not .xls or .csv)</li>
+                <li data-i18n="limitations.excel.li1">Only works with files created from the provided templates</li>
+                <li data-i18n="limitations.excel.li2">Custom Excel structures are not supported</li>
+                <li data-i18n="limitations.excel.li3">Must be saved as .xlsx format (not .xls or .csv)</li>
             </ul>
 
-            <h3>📝 Data Limitations</h3>
+            <h3 data-i18n="limitations.data.title">📝 Data Limitations</h3>
             <ul>
-                <li>Complex formatting in Excel cells may not transfer correctly</li>
-                <li>Template must be used as-is; adding or removing columns will break the converter</li>
-                <li>Very large files (thousands of lines) may take longer to process</li>
+                <li data-i18n="limitations.data.li1">Complex formatting in Excel cells may not transfer correctly</li>
+                <li data-i18n="limitations.data.li2">Template must be used as-is; adding or removing columns will break the converter</li>
+                <li data-i18n="limitations.data.li3">Very large files (thousands of lines) may take longer to process</li>
             </ul>
 
-            <h3>🔧 Technical Issues</h3>
+            <h3 data-i18n="limitations.tech.title">🔧 Technical Issues</h3>
             <ul>
-                <li>Windows may show a security warning when running the .exe file (this is normal for unsigned applications). 
+                <li data-i18n="limitations.tech.li1">Windows may show a security warning when running the .exe file (this is normal for unsigned applications).
                     Click "More info" and then "Run anyway" if you trust the source.</li>
-                <li>Some antivirus software may flag the executable as suspicious (false positive). 
+                <li data-i18n="limitations.tech.li2">Some antivirus software may flag the executable as suspicious (false positive).
                     You may need to add an exception.</li>
             </ul>
 
-            <h3>🐛 Known Bugs</h3>
-            <p>
-                For the latest bug reports and to report new issues, please visit the 
+            <h3 data-i18n="limitations.bugs.title">🐛 Known Bugs</h3>
+            <p data-i18n-html="limitations.bugs.p">
+                For the latest bug reports and to report new issues, please visit the
                 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">
                 GitHub Issues page</a>.
             </p>
         </section>
 
         <section id="faq">
-            <h2>Frequently Asked Questions</h2>
-            
+            <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+
             <div class="faq-item">
-                <h3>Q: Do I need to install anything?</h3>
-                <p><strong>A:</strong> On Windows, no installation is required. Just download the .exe file and run it. 
+                <h3 data-i18n="faq.q1.q">Q: Do I need to install anything?</h3>
+                <p data-i18n-html="faq.q1.a"><strong>A:</strong> On Windows, no installation is required. Just download the .exe file and run it.
                    On macOS/Linux, you'll need Python 3.8 or newer installed.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Q: Can I use this with LibreOffice or Google Sheets?</h3>
-                <p><strong>A:</strong> LibreOffice and Google Sheets may be able to open the templates, but they will not include the protection features designed to make sure your native speaking coworkers only enter text in the appropriate fields. Highly recommended to use Excel and not LibreOffice or Google Sheets, though as long as people very carefully put things exactly where they belong without changing the sheet layout at all and save as .xslx, it <i>might</i> still work.</i></p>
+                <h3 data-i18n="faq.q2.q">Q: Can I use this with LibreOffice or Google Sheets?</h3>
+                <p data-i18n-html="faq.q2.a"><strong>A:</strong> LibreOffice and Google Sheets may be able to open the templates, but they will not include the protection features designed to make sure your native speaking coworkers only enter text in the appropriate fields. Highly recommended to use Excel and not LibreOffice or Google Sheets, though as long as people very carefully put things exactly where they belong without changing the sheet layout at all and save as .xslx, it <i>might</i> still work.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Q: My text doesn't show up in FLEx after importing. What's wrong?</h3>
-                <p><strong>A:</strong> This is almost always a writing system configuration issue. Check that:
+                <h3 data-i18n="faq.q3.q">Q: My text doesn't show up in FLEx after importing. What's wrong?</h3>
+                <p data-i18n-html="faq.q3.a"><strong>A:</strong> This is almost always a writing system configuration issue. Check that:
                 <ol>
                     <li>The writing system codes in your Excel file match those in your FLEx project exactly</li>
                     <li>You've configured writing systems in Tools → Configure → Writing Systems...</li>
@@ -321,8 +335,8 @@
             </div>
 
             <div class="faq-item">
-                <h3>Q: What writing system codes should I use?</h3>
-                <p><strong>A:</strong> Use the same codes that are already set up in your FLEx project. Common examples:
+                <h3 data-i18n="faq.q4.q">Q: What writing system codes should I use?</h3>
+                <p data-i18n-html="faq.q4.a"><strong>A:</strong> Use the same codes that are already set up in your FLEx project. Common examples:
                 <ul>
                     <li>"en" for English</li>
                     <li>"es" or "spa" for Spanish</li>
@@ -333,8 +347,8 @@
             </div>
 
             <div class="faq-item">
-                <h3>Q: Which template size should I use?</h3>
-                <p><strong>A:</strong> Choose based on your text length:
+                <h3 data-i18n="faq.q5.q">Q: Which template size should I use?</h3>
+                <p data-i18n-html="faq.q5.a"><strong>A:</strong> Choose based on your text length:
                 <ul>
                     <li><strong>80 lines:</strong> Short texts, single stories, or when you're just starting</li>
                     <li><strong>200 lines:</strong> Medium texts, most common use case</li>
@@ -344,8 +358,8 @@
             </div>
 
             <div class="faq-item">
-                <h3>Q: Can I modify the Excel template?</h3>
-                <p><strong>A:</strong> You can modify the content and some formatting, but do NOT:
+                <h3 data-i18n="faq.q6.q">Q: Can I modify the Excel template?</h3>
+                <p data-i18n-html="faq.q6.a"><strong>A:</strong> You can modify the content and some formatting, but do NOT:
                 <ul>
                     <li>Add or remove columns</li>
                     <li>Change the structure of the template</li>
@@ -355,52 +369,52 @@
             </div>
 
             <div class="faq-item">
-                <h3>Q: Is my language data secure?</h3>
-                <p><strong>A:</strong> Yes. This tool runs completely on your local computer. No data is sent to the 
+                <h3 data-i18n="faq.q7.q">Q: Is my language data secure?</h3>
+                <p data-i18n-html="faq.q7.a"><strong>A:</strong> Yes. This tool runs completely on your local computer. No data is sent to the
                    internet or any external servers. Your Excel files and converted FlexText files stay on your computer.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Q: Can I use this tool for languages other than English?</h3>
-                <p><strong>A:</strong> Absolutely! This tool is specifically designed for minority languages. It supports 
+                <h3 data-i18n="faq.q8.q">Q: Can I use this tool for languages other than English?</h3>
+                <p data-i18n-html="faq.q8.a"><strong>A:</strong> Absolutely! This tool is specifically designed for minority languages. It supports
                    any language that FLEx supports, as long as you configure the writing system codes correctly.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Q: I'm getting an error message. What should I do?</h3>
-                <p><strong>A:</strong> The converter displays error messages in the bottom panel. Common errors include:
+                <h3 data-i18n="faq.q9.q">Q: I'm getting an error message. What should I do?</h3>
+                <p data-i18n-html="faq.q9.a"><strong>A:</strong> The converter displays error messages in the bottom panel. Common errors include:
                 <ul>
                     <li><strong>"Writing system code must be 2 or 3 letters":</strong> Check the codes at the top of your Excel file</li>
                     <li><strong>"File does not exist":</strong> Make sure you saved your Excel file before trying to convert</li>
                     <li><strong>Loading errors:</strong> The Excel file may be corrupted or not based on the template</li>
                 </ul>
-                If you can't resolve the error, please report it on the 
+                If you can't resolve the error, please report it on the
                 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">GitHub Issues page</a>.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Q: Can I contribute to this project?</h3>
-                <p><strong>A:</strong> Yes! This is an open-source project. You can contribute by:
+                <h3 data-i18n="faq.q10.q">Q: Can I contribute to this project?</h3>
+                <p data-i18n-html="faq.q10.a"><strong>A:</strong> Yes! This is an open-source project. You can contribute by:
                 <ul>
                     <li>Reporting bugs or requesting features on GitHub</li>
                     <li>Submitting code improvements via Pull Requests</li>
                     <li>Helping translate documentation</li>
                     <li>Sharing your experience with other users</li>
                 </ul>
-                Visit the <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">GitHub repository</a> 
+                Visit the <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">GitHub repository</a>
                 to get started.</p>
             </div>
         </section>
 
         <section id="support">
-            <h2>Need Help?</h2>
-            <p>If you need additional assistance:</p>
+            <h2 data-i18n="support.title">Need Help?</h2>
+            <p data-i18n="support.intro">If you need additional assistance:</p>
             <ul>
-                <li>📖 Read the <a href="https://github.com/rulingAnts/FlexText-Excel-Import#readme" target="_blank">
+                <li data-i18n-html="support.docs">📖 Read the <a href="https://github.com/rulingAnts/FlexText-Excel-Import#readme" target="_blank">
                     full documentation on GitHub</a></li>
-                <li>🐛 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">
+                <li data-i18n-html="support.bugs">🐛 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/issues" target="_blank">
                     Report bugs or request features</a></li>
-                <li>💬 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/discussions" target="_blank">
+                <li data-i18n-html="support.discuss">💬 <a href="https://github.com/rulingAnts/FlexText-Excel-Import/discussions" target="_blank">
                     Join the discussion</a> (if available)</li>
             </ul>
         </section>
@@ -408,16 +422,17 @@
 
     <footer>
         <div class="container">
-            <p>
-                <strong>FlexText Excel Import</strong> | 
-                Copyright © 2025 Seth Johnston and Brian Plimley | 
+            <p data-i18n-html="footer.copyright">
+                <strong>FlexText Excel Import</strong> |
+                Copyright © 2025 Seth Johnston and Brian Plimley |
                 Licensed under <a href="https://github.com/rulingAnts/FlexText-Excel-Import/blob/main/LICENSE" target="_blank">
                 AGPL-3.0</a>
             </p>
-            <p>
+            <p data-i18n-html="footer.github">
                 <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">View on GitHub</a>
             </p>
         </div>
     </footer>
+    <script src="i18n.js"></script>
 </body>
 </html>

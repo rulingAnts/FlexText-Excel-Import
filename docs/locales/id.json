@@ -1,0 +1,266 @@
+{
+  "page": {
+    "title": "FlexText Excel Import - Alat Teks Interlinear Mudah"
+  },
+  "nav": {
+    "about": "Tentang",
+    "download": "Unduh",
+    "quickstart": "Mulai Cepat",
+    "howtouse": "Cara Penggunaan",
+    "limitations": "Keterbatasan",
+    "faq": "FAQ",
+    "writingsystem": "Kode Sistem Penulisan"
+  },
+  "header": {
+    "tagline": "Konversi transkripsi Excel ke teks interlinear FLEx dengan mudah"
+  },
+  "about": {
+    "title": "Tentang Alat Ini",
+    "p1": "Alat FlexText Excel Import dirancang untuk memudahkan transkripsi dan terjemahan balik teks bahasa daerah bagi semua orang, terutama penutur asli yang mungkin belum terbiasa dengan perangkat lunak linguistik yang kompleks.",
+    "p2": "Daripada bekerja langsung di FLEx (Fieldworks Language Explorer), Anda dapat menggunakan spreadsheet Excel yang sudah familiar untuk memasukkan data teks Anda. Kemudian, dengan satu klik sederhana, alat ini mengonversi file Excel Anda ke format FlexText yang dapat diimpor langsung oleh FLEx.",
+    "feature1": {
+      "title": "✨ Mudah Digunakan",
+      "desc": "Tidak perlu pengetahuan pemrograman. Cukup isi templat Excel dan klik konversi."
+    },
+    "feature2": {
+      "title": "📝 Format yang Familiar",
+      "desc": "Bekerja di Excel, alat yang sudah dikenal dan dipahami kebanyakan orang."
+    },
+    "feature3": {
+      "title": "🚀 Konversi Cepat",
+      "desc": "Konversi data Anda ke format yang kompatibel dengan FLEx dalam hitungan detik."
+    }
+  },
+  "download": {
+    "title": "Unduh",
+    "both": "Anda perlu mengunduh <strong>keduanya</strong> yaitu aplikasi dan templat Excel untuk menggunakan alat ini.",
+    "version": "Versi Terbaru: v1.2.0",
+    "macos": {
+      "title": "🍏 Aplikasi macOS",
+      "desc": "Gambar DMG berisi bundel aplikasi",
+      "btn": "Unduh untuk macOS (.dmg)",
+      "size": "Ukuran: ~19 MB"
+    },
+    "windows": {
+      "title": "🖥️ Aplikasi Windows",
+      "desc": "Executable portabel (dalam zip) - tidak perlu instalasi",
+      "btn": "Unduh untuk Windows (.zip)",
+      "size": "Ukuran: ~18 MB"
+    },
+    "templates": {
+      "title": "📋 Templat Excel",
+      "desc": "Tiga ukuran templat: 80, 200, dan 1000 baris",
+      "btn": "Unduh Templat (.zip)",
+      "size": "Ukuran: ~117 KB"
+    },
+    "allreleases": {
+      "title": "📦 Semua Rilis",
+      "p": "Lihat semua versi dan unduhan tambahan di <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/releases/latest\" target=\"_blank\">halaman Rilis GitHub</a>."
+    },
+    "ossupport": {
+      "title": "Dukungan Sistem Operasi",
+      "windows": "<strong>✅ Windows:</strong> Unduh .zip, ekstrak, dan jalankan .exe (tidak perlu instalasi)",
+      "macos": "<strong>✅ macOS (Apple Silicon):</strong> Unduh .dmg, seret aplikasi ke Applications, lalu klik kanan → Open pada peluncuran pertama untuk melewati Gatekeeper pada aplikasi yang tidak ditandatangani",
+      "linux": "<strong>⚠️ Linux:</strong> Saat ini memerlukan Python dan menjalankan dari sumber. Lihat <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import#setup-and-gui-usage\" target=\"_blank\">instruksi pengembang</a>."
+    }
+  },
+  "quickstart": {
+    "title": "Panduan Mulai Cepat",
+    "step1": {
+      "title": "Unduh dan Ekstrak",
+      "desc": "Unduh aplikasi Windows (.exe) dan templat Excel (.zip). Ekstrak templat dari file zip ke lokasi di komputer Anda."
+    },
+    "step2": {
+      "title": "Isi Templat",
+      "desc": "Buka salah satu templat Excel (pilih ukuran sesuai panjang teks Anda). Isi data teks Anda mengikuti struktur templat. Pastikan untuk mengisi kode sistem penulisan di bagian atas lembar agar sesuai dengan proyek FLEx Anda. <strong>Gunakan nilai \"Code\" dari pengaturan sistem penulisan FLEx (bukan Abbreviation).</strong> Lihat <a href=\"writing-system-codes.html\">Kode Sistem Penulisan</a>."
+    },
+    "step3": {
+      "title": "Konversi",
+      "desc": "Klik dua kali aplikasi konverter (file .exe). Pilih file Excel Anda sebagai input, tentukan lokasi penyimpanan output, dan klik Konversi."
+    },
+    "step4": {
+      "title": "Impor ke FLEx",
+      "desc": "Buka FLEx dan beralih ke <strong>tampilan Interlinear Text</strong> (Anda harus berada di tampilan ini untuk melihat opsi impor). Kemudian pergi ke <strong>File → Import → Interlinear Text...</strong> dan pilih file .flextext yang dihasilkan."
+    }
+  },
+  "howtouse": {
+    "title": "Cara Penggunaan - Instruksi Lengkap",
+    "step1": {
+      "title": "Langkah 1: Siapkan File Excel Anda",
+      "li1": "Pilih salah satu dari tiga ukuran templat berdasarkan teks Anda: <ul><li><strong>80 baris:</strong> Teks pendek atau cerita singkat</li><li><strong>200 baris:</strong> Teks panjang sedang</li><li><strong>1000 baris:</strong> Teks panjang atau narasi yang diperluas</li></ul>",
+      "li2": "Buka templat di Microsoft Excel atau program yang kompatibel",
+      "li3": "<strong>Penting:</strong> Isi kode sistem penulisan di bagian header (kanan atas lembar). Kode-kode ini harus sesuai dengan pengaturan proyek FLEx Anda. Gunakan nilai FLEx <em>Code</em> dari tab General (JANGAN gunakan Abbreviation atau nama bahasa). Lihat <a href=\"writing-system-codes.html\">Kode Sistem Penulisan</a> untuk detailnya: <ul><li><strong>Sistem penulisan vernakular:</strong> Biasanya kode bahasa 2-3 huruf (mis., \"en\", \"spa\", \"qaa\")</li><li><strong>Sistem penulisan gloss:</strong> Kode bahasa untuk gloss kata</li><li><strong>Sistem penulisan terjemahan bebas:</strong> Kode bahasa untuk terjemahan bebas</li></ul>",
+      "li4": "Masukkan data teks Anda di kolom yang sesuai: <ul><li>Teks bahasa asli di kolom vernakular</li><li>Gloss kata per kata di kolom gloss</li><li>Terjemahan bebas (tingkat kalimat/paragraf) di kolom terjemahan bebas</li></ul>",
+      "li5": "Simpan file yang sudah selesai sebagai buku kerja Excel (.xlsx)"
+    },
+    "step2": {
+      "title": "Langkah 2: Jalankan Konverter",
+      "li1": "Klik dua kali file <code>convert_interlinear_gui.exe</code>",
+      "li2": "Sebuah jendela akan terbuka dengan antarmuka konverter",
+      "li3": "Pilih <strong>\"Excel Interlinear\"</strong> sebagai format input (seharusnya sudah default)",
+      "li4": "Klik <strong>\"Select input file &amp; load\"</strong> dan pilih file Excel Anda",
+      "li5": "Tunggu file dimuat (progress bar akan menunjukkan statusnya)",
+      "li6": "Periksa sistem penulisan yang ditampilkan untuk memastikan sesuai dengan yang Anda harapkan",
+      "li7": "Pilih <strong>\"FlexText Interlinear\"</strong> sebagai format output",
+      "li8": "Klik <strong>\"Select output file &amp; convert\"</strong>",
+      "li9": "Pilih lokasi penyimpanan file output (nama yang sama dengan input berekstensi .flextext disarankan)",
+      "li10": "Tunggu proses konversi selesai"
+    },
+    "step3": {
+      "title": "Langkah 3: Impor ke FLEx",
+      "li1": "Buka proyek FLEx Anda",
+      "li2": "<strong>Penting:</strong> Beralih ke <strong>tampilan Interlinear Text</strong> di FLEx. Opsi impor tidak akan terlihat jika Anda berada di tampilan lain (seperti Lists, Data Notebook, atau Lexicon view). Cari \"Texts &amp; Words\" di menu bar untuk mengakses tampilan Interlinear Text.",
+      "li3": "<strong>Penting:</strong> Sebelum mengimpor, konfigurasikan sistem penulisan di FLEx: <ul><li>Pergi ke <strong>Tools → Configure → Writing Systems...</strong></li><li>Pastikan sistem penulisan vernakular dan analisis Anda dikonfigurasi menggunakan nilai <strong>Code</strong> yang benar (bukan Abbreviation)</li><li>Pergi ke <strong>Tools → Configure → Interlinear...</strong> (di tab Gloss atau Analyze)</li><li>Atur sistem penulisan untuk Word Gloss dan Free Translation</li><li>Pastikan ini sesuai dengan kode yang Anda gunakan di templat Excel Anda</li></ul>",
+      "li4": "Pergi ke <strong>File → Import → Interlinear Text...</strong>",
+      "li5": "Pilih file .flextext yang dihasilkan",
+      "li6": "Ikuti petunjuk impor FLEx",
+      "li7": "Teks Anda sekarang seharusnya muncul di FLEx sebagai teks interlinear"
+    },
+    "tips": {
+      "title": "Tips untuk Keberhasilan",
+      "li1": "<strong>Kode sistem penulisan harus persis sama</strong> antara file Excel Anda dan proyek FLEx",
+      "li2": "Jika teks Anda tidak muncul setelah mengimpor, periksa pengaturan sistem penulisan di FLEx",
+      "li3": "Urutan sistem penulisan dalam pengaturan interlinear FLEx harus sesuai dengan templat Excel Anda",
+      "li4": "Setiap teks/tab di FLEx memiliki pengaturan interlinear sendiri - konfigurasikan masing-masing secara individual",
+      "li5": "Mulailah dengan file uji kecil untuk memastikan pengaturan Anda benar sebelum mengonversi teks yang lebih besar"
+    }
+  },
+  "limitations": {
+    "title": "Keterbatasan dan Masalah yang Diketahui",
+    "writingsystem": {
+      "title": "⚠️ Konfigurasi Sistem Penulisan",
+      "intro": "Masalah yang paling umum ditemui pengguna adalah dengan pengaturan sistem penulisan. FLEx mengharuskan:",
+      "li1": "Kode sistem penulisan di file Excel Anda <strong>sama persis</strong> dengan yang ada di proyek FLEx Anda (gunakan kolom <strong>Code</strong>; bukan Abbreviation)",
+      "li2": "Sistem penulisan harus dikonfigurasi di pengaturan tingkat proyek DAN pengaturan teks individual",
+      "li3": "Urutan sistem penulisan dalam pengaturan interlinear FLEx harus sesuai dengan templat Anda",
+      "symptom": "<strong>Gejala:</strong> Anda mengimpor file tetapi tidak ada yang ditampilkan di FLEx.<br><strong>Solusi:</strong> Periksa dan sesuaikan pengaturan sistem penulisan seperti yang dijelaskan di bagian \"Cara Penggunaan\" di atas."
+    },
+    "platform": {
+      "title": "🖥️ Ketersediaan Platform",
+      "windows": "<strong>Windows:</strong> Didukung penuh dengan executable mandiri",
+      "macos": "<strong>macOS dan Linux:</strong> Saat ini memerlukan Python 3.8+ dan pengaturan manual. Pengguna tingkat lanjut dapat menjalankan dari kode sumber mengikuti <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import#setup-and-gui-usage\" target=\"_blank\">instruksi pengembang di GitHub</a>."
+    },
+    "excel": {
+      "title": "📋 Kompatibilitas Excel",
+      "li1": "Hanya berfungsi dengan file yang dibuat dari templat yang disediakan",
+      "li2": "Struktur Excel khusus tidak didukung",
+      "li3": "Harus disimpan dalam format .xlsx (bukan .xls atau .csv)"
+    },
+    "data": {
+      "title": "📝 Keterbatasan Data",
+      "li1": "Pemformatan kompleks di sel Excel mungkin tidak ditransfer dengan benar",
+      "li2": "Templat harus digunakan apa adanya; menambah atau menghapus kolom akan merusak konverter",
+      "li3": "File yang sangat besar (ribuan baris) mungkin membutuhkan waktu lebih lama untuk diproses"
+    },
+    "tech": {
+      "title": "🔧 Masalah Teknis",
+      "li1": "Windows mungkin menampilkan peringatan keamanan saat menjalankan file .exe (ini normal untuk aplikasi yang tidak ditandatangani). Klik \"More info\" lalu \"Run anyway\" jika Anda mempercayai sumbernya.",
+      "li2": "Beberapa perangkat lunak antivirus mungkin menandai executable sebagai mencurigakan (false positive). Anda mungkin perlu menambahkan pengecualian."
+    },
+    "bugs": {
+      "title": "🐛 Bug yang Diketahui",
+      "p": "Untuk laporan bug terbaru dan melaporkan masalah baru, silakan kunjungi <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/issues\" target=\"_blank\">halaman Issues GitHub</a>."
+    }
+  },
+  "faq": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "q1": {
+      "q": "T: Apakah saya perlu menginstal sesuatu?",
+      "a": "<strong>J:</strong> Di Windows, tidak perlu instalasi. Cukup unduh file .exe dan jalankan. Di macOS/Linux, Anda memerlukan Python 3.8 atau lebih baru yang terinstal."
+    },
+    "q2": {
+      "q": "T: Bisakah saya menggunakan ini dengan LibreOffice atau Google Sheets?",
+      "a": "<strong>J:</strong> LibreOffice dan Google Sheets mungkin dapat membuka templat, tetapi tidak akan menyertakan fitur perlindungan yang dirancang untuk memastikan rekan kerja penutur asli Anda hanya memasukkan teks di kolom yang sesuai. Sangat disarankan untuk menggunakan Excel dan bukan LibreOffice atau Google Sheets, meskipun selama orang sangat berhati-hati meletakkan sesuatu tepat di tempatnya tanpa mengubah tata letak lembar sama sekali dan menyimpan sebagai .xlsx, itu <i>mungkin</i> tetap berfungsi."
+    },
+    "q3": {
+      "q": "T: Teks saya tidak muncul di FLEx setelah diimpor. Ada apa?",
+      "a": "<strong>J:</strong> Ini hampir selalu merupakan masalah konfigurasi sistem penulisan. Periksa bahwa: <ol><li>Kode sistem penulisan di file Excel Anda sesuai persis dengan yang ada di proyek FLEx Anda</li><li>Anda telah mengonfigurasi sistem penulisan di Tools → Configure → Writing Systems...</li><li>Anda telah mengonfigurasi pengaturan interlinear di Tools → Configure → Interlinear...</li><li>Sistem penulisan berada dalam urutan yang sama di kedua tempat</li></ol>"
+    },
+    "q4": {
+      "q": "T: Kode sistem penulisan apa yang harus saya gunakan?",
+      "a": "<strong>J:</strong> Gunakan kode yang sama dengan yang sudah disiapkan di proyek FLEx Anda. Contoh umum: <ul><li>\"en\" untuk bahasa Inggris</li><li>\"es\" atau \"spa\" untuk bahasa Spanyol</li><li>\"fr\" atau \"fra\" untuk bahasa Prancis</li><li>Kode ISO 639 untuk bahasa spesifik Anda</li></ul> Salin nilai berlabel <strong>Code</strong> (bukan Abbreviation) dari tab General di <em>Tools → Configure → Writing Systems…</em>. Lihat <a href=\"writing-system-codes.html\">Kode Sistem Penulisan</a>."
+    },
+    "q5": {
+      "q": "T: Ukuran templat mana yang harus saya gunakan?",
+      "a": "<strong>J:</strong> Pilih berdasarkan panjang teks Anda: <ul><li><strong>80 baris:</strong> Teks pendek, cerita tunggal, atau saat baru memulai</li><li><strong>200 baris:</strong> Teks sedang, kasus penggunaan paling umum</li><li><strong>1000 baris:</strong> Narasi panjang atau beberapa cerita dalam satu file</li></ul> Anda selalu bisa mulai dengan templat yang lebih kecil dan beralih ke yang lebih besar jika diperlukan."
+    },
+    "q6": {
+      "q": "T: Bisakah saya memodifikasi templat Excel?",
+      "a": "<strong>J:</strong> Anda dapat memodifikasi konten dan beberapa pemformatan, tetapi JANGAN: <ul><li>Menambah atau menghapus kolom</li><li>Mengubah struktur templat</li><li>Memindahkan bagian kode sistem penulisan</li></ul> Perubahan ini akan merusak konverter."
+    },
+    "q7": {
+      "q": "T: Apakah data bahasa saya aman?",
+      "a": "<strong>J:</strong> Ya. Alat ini berjalan sepenuhnya di komputer lokal Anda. Tidak ada data yang dikirim ke internet atau server eksternal mana pun. File Excel dan file FlexText yang dikonversi tetap berada di komputer Anda."
+    },
+    "q8": {
+      "q": "T: Bisakah saya menggunakan alat ini untuk bahasa selain bahasa Inggris?",
+      "a": "<strong>J:</strong> Tentu saja! Alat ini dirancang khusus untuk bahasa-bahasa daerah. Ini mendukung bahasa apa pun yang didukung FLEx, selama Anda mengonfigurasi kode sistem penulisan dengan benar."
+    },
+    "q9": {
+      "q": "T: Saya mendapatkan pesan kesalahan. Apa yang harus saya lakukan?",
+      "a": "<strong>J:</strong> Konverter menampilkan pesan kesalahan di panel bawah. Kesalahan umum meliputi: <ul><li><strong>\"Writing system code must be 2 or 3 letters\":</strong> Periksa kode di bagian atas file Excel Anda</li><li><strong>\"File does not exist\":</strong> Pastikan Anda menyimpan file Excel sebelum mencoba mengonversi</li><li><strong>Loading errors:</strong> File Excel mungkin rusak atau tidak berdasarkan templat</li></ul> Jika Anda tidak dapat menyelesaikan kesalahan tersebut, silakan laporkan di <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/issues\" target=\"_blank\">halaman Issues GitHub</a>."
+    },
+    "q10": {
+      "q": "T: Bisakah saya berkontribusi pada proyek ini?",
+      "a": "<strong>J:</strong> Ya! Ini adalah proyek open-source. Anda dapat berkontribusi dengan: <ul><li>Melaporkan bug atau meminta fitur di GitHub</li><li>Mengirimkan peningkatan kode melalui Pull Requests</li><li>Membantu menerjemahkan dokumentasi</li><li>Berbagi pengalaman Anda dengan pengguna lain</li></ul> Kunjungi <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import\" target=\"_blank\">repositori GitHub</a> untuk memulai."
+    }
+  },
+  "support": {
+    "title": "Butuh Bantuan?",
+    "intro": "Jika Anda membutuhkan bantuan tambahan:",
+    "docs": "📖 Baca <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import#readme\" target=\"_blank\">dokumentasi lengkap di GitHub</a>",
+    "bugs": "🐛 <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/issues\" target=\"_blank\">Laporkan bug atau minta fitur</a>",
+    "discuss": "💬 <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/discussions\" target=\"_blank\">Bergabung dalam diskusi</a> (jika tersedia)"
+  },
+  "footer": {
+    "copyright": "<strong>FlexText Excel Import</strong> | Copyright © 2025 Seth Johnston and Brian Plimley | Dilisensikan di bawah <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import/blob/main/LICENSE\" target=\"_blank\">AGPL-3.0</a>",
+    "github": "<a href=\"https://github.com/rulingAnts/FlexText-Excel-Import\" target=\"_blank\">Lihat di GitHub</a>"
+  },
+  "wsc": {
+    "page": {
+      "title": "Kode Sistem Penulisan — FlexText Excel Import"
+    },
+    "header": {
+      "title": "Kode Sistem Penulisan",
+      "tagline": "Ini harus persis sama dengan proyek FLEx Anda"
+    },
+    "callout": "<strong>Penting:</strong> Jika kode sistem penulisan di lembar Excel Anda (atau yang Anda masukkan di konverter) <em>tidak</em> persis sama dengan kode yang sudah didefinisikan di proyek FLEx Anda, FLEx akan membuat <strong>sistem penulisan baru</strong> dan data yang diimpor akan ditempatkan di sana. Ini menyebabkan duplikasi dan pembersihan yang rumit. Selalu gunakan kode persis dari proyek FLEx Anda.",
+    "whichcode": {
+      "title": "Kode mana yang digunakan",
+      "p": "Gunakan nilai berlabel <strong>Code</strong> di tab <em>General</em> dari properti Writing System. <br><strong>Jangan gunakan</strong> <em>Abbreviation</em> atau teks nama bahasa."
+    },
+    "wheretofind": {
+      "title": "Di mana menemukannya di FLEx",
+      "li1": "Buka FLEx → <strong>Tools → Configure → Writing Systems…</strong>",
+      "li2": "Pilih sistem penulisan yang relevan <ul><li><strong>Vernacular</strong> untuk teks dasar</li><li><strong>Analysis</strong> untuk Gloss dan Free Translation</li></ul>",
+      "li3": "Pergi ke tab <strong>General</strong> dan salin nilai di <strong>Code</strong>, tepat di bawah tab <strong>General</strong> (mis., <code>grc</code>). JANGAN gunakan Language Code, Abbreviation, Language Name, atau kode Ethnologue (kecuali jika kebetulan sama persis dengan <strong>Code</strong>)."
+    },
+    "screenshot": {
+      "caption": "Gunakan nilai <strong>Code</strong> (dilingkari dalam tangkapan layar). Jangan gunakan <em>Abbreviation</em> atau <em>Language Name</em>."
+    },
+    "entercodes": {
+      "title": "Masukkan kode-kode ini di konverter",
+      "li1": "<strong>Vernacular Writing System:</strong> <em>Code</em> Vernacular proyek Anda",
+      "li2": "<strong>Gloss Writing System:</strong> <em>Code</em> Analysis yang digunakan untuk gloss kata",
+      "li3": "<strong>Free Translation Writing System:</strong> <em>Code</em> Analysis yang digunakan untuk terjemahan bebas",
+      "note": "Kode adalah tag BCP&nbsp;47 (mis., <code>en</code>, <code>grc</code>, <code>es-419</code>, atau tag kustom). Masukkan <em>persis</em> seperti yang ditampilkan di FLEx (termasuk huruf besar/kecil)."
+    },
+    "wrongcodes": {
+      "title": "Jika Anda sudah mengimpor dengan kode yang salah",
+      "li1": "Buka <strong>Tools → Configure → Writing Systems…</strong>",
+      "li2": "Hapus sistem penulisan yang tidak diinginkan/duplikat yang dibuat FLEx",
+      "li3": "Impor ulang menggunakan kode yang benar"
+    },
+    "checklist": {
+      "title": "Daftar periksa pra-impor",
+      "li1": "Vernacular Code sesuai persis",
+      "li2": "Gloss/Analysis Code sesuai persis",
+      "li3": "Free Translation/Analysis Code sesuai persis",
+      "li4": "Tidak ada spasi berlebih; huruf besar/kecil sesuai"
+    },
+    "backhome": "<a href=\"index.html\">← Kembali ke Beranda</a>",
+    "footer": {
+      "text": "<strong>FlexText Excel Import</strong> | <a href=\"https://github.com/rulingAnts/FlexText-Excel-Import\" target=\"_blank\">Lihat di GitHub</a>"
+    }
+  }
+}

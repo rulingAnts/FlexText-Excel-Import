@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writing System Codes — FlexText Excel Import</title>
+    <title data-i18n="wsc.page.title">Writing System Codes — FlexText Excel Import</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .callout-warning { background: #fff4e5; border-left: 4px solid #f0ad4e; padding: 1rem; margin: 1rem 0; }
@@ -22,91 +22,106 @@
 <body>
     <header>
         <div class="container">
-            <h1>Writing System Codes</h1>
-            <p class="tagline">These must match your FLEx project exactly</p>
+            <h1 data-i18n="wsc.header.title">Writing System Codes</h1>
+            <p class="tagline" data-i18n="wsc.header.tagline">These must match your FLEx project exactly</p>
+        </div>
+        <div class="lang-switcher" id="lang-switcher">
+            <button id="lang-toggle" onclick="i18n.toggleDropdown()" aria-label="Select language">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span id="lang-code">EN</span>
+            </button>
+            <div class="lang-dropdown" id="lang-dropdown" hidden>
+                <button onclick="i18n.setLang('en')">English</button>
+                <button onclick="i18n.setLang('id')">Bahasa Indonesia</button>
+            </div>
         </div>
     </header>
 
     <nav>
         <div class="container">
             <ul>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#download">Download</a></li>
-                <li><a href="index.html#quick-start">Quick Start</a></li>
-                <li><a href="index.html#how-to-use">How to Use</a></li>
-                <li><a href="index.html#limitations">Limitations</a></li>
-                <li><a href="index.html#faq">FAQ</a></li>
+                <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+                <li><a href="index.html#download" data-i18n="nav.download">Download</a></li>
+                <li><a href="index.html#quick-start" data-i18n="nav.quickstart">Quick Start</a></li>
+                <li><a href="index.html#how-to-use" data-i18n="nav.howtouse">How to Use</a></li>
+                <li><a href="index.html#limitations" data-i18n="nav.limitations">Limitations</a></li>
+                <li><a href="index.html#faq" data-i18n="nav.faq">FAQ</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
         <section>
-            <div class="callout-warning">
+            <div class="callout-warning" data-i18n-html="wsc.callout">
                 <strong>Important:</strong> If the writing system codes in your Excel sheet (or those you enter in the converter)
                 do <em>not</em> exactly match the codes already defined in your FLEx project, FLEx will create <strong>new writing systems</strong>
                 and your imported data will be placed there. This leads to duplicates and a messy cleanup. Always use the exact codes from your FLEx project.
             </div>
 
-            <h2>Which code to use</h2>
-            <p>
+            <h2 data-i18n="wsc.whichcode.title">Which code to use</h2>
+            <p data-i18n-html="wsc.whichcode.p">
                 Use the value labeled <strong>Code</strong> on the <em>General</em> tab of the Writing System properties. <br>
                 <strong>Do not use</strong> the <em>Abbreviation</em> or the language name text.
             </p>
 
-            <h3>Where to find it in FLEx</h3>
+            <h3 data-i18n="wsc.wheretofind.title">Where to find it in FLEx</h3>
             <ol>
-                <li>Open FLEx → <strong>Tools → Configure → Writing Systems…</strong></li>
-                <li>Select the relevant writing system
+                <li data-i18n-html="wsc.wheretofind.li1">Open FLEx → <strong>Tools → Configure → Writing Systems…</strong></li>
+                <li data-i18n-html="wsc.wheretofind.li2">Select the relevant writing system
                     <ul>
                         <li><strong>Vernacular</strong> for the baseline text</li>
                         <li><strong>Analysis</strong> for Gloss and Free Translation</li>
                     </ul>
                 </li>
-                <li>Go to the <strong>General</strong> tab and copy the value in <strong>Code</strong>, immediately under the <strong>General</strong> tab (e.g., <code>grc</code>). DO NOT use the Language Code, Abbreviation, Language Name, or Ethnologue code (except if it happens to be identical to just plain <strong>Code</strong>).</li>
+                <li data-i18n-html="wsc.wheretofind.li3">Go to the <strong>General</strong> tab and copy the value in <strong>Code</strong>, immediately under the <strong>General</strong> tab (e.g., <code>grc</code>). DO NOT use the Language Code, Abbreviation, Language Name, or Ethnologue code (except if it happens to be identical to just plain <strong>Code</strong>).</li>
             </ol>
 
             <div class="screenshot">
                 <img src="images/vern_writ_sys.png" alt="FLEx Writing System properties – use the Code value (e.g., grc). Do not use Abbreviation or Language Name.">
-                <p class="small">Use the <strong>Code</strong> value (circled in the screenshot). Do not use <em>Abbreviation</em> or <em>Language Name</em>.</p>
+                <p class="small" data-i18n-html="wsc.screenshot.caption">Use the <strong>Code</strong> value (circled in the screenshot). Do not use <em>Abbreviation</em> or <em>Language Name</em>.</p>
             </div>
 
-            <h2>Enter these codes in the converter</h2>
+            <h2 data-i18n="wsc.entercodes.title">Enter these codes in the converter</h2>
             <ul>
-                <li><strong>Vernacular Writing System:</strong> your project’s Vernacular <em>Code</em></li>
-                <li><strong>Gloss Writing System:</strong> the Analysis <em>Code</em> used for word glosses</li>
-                <li><strong>Free Translation Writing System:</strong> the Analysis <em>Code</em> used for free translations</li>
+                <li data-i18n-html="wsc.entercodes.li1"><strong>Vernacular Writing System:</strong> your project's Vernacular <em>Code</em></li>
+                <li data-i18n-html="wsc.entercodes.li2"><strong>Gloss Writing System:</strong> the Analysis <em>Code</em> used for word glosses</li>
+                <li data-i18n-html="wsc.entercodes.li3"><strong>Free Translation Writing System:</strong> the Analysis <em>Code</em> used for free translations</li>
             </ul>
-            <p class="small">
+            <p class="small" data-i18n-html="wsc.entercodes.note">
                 Codes are BCP&nbsp;47 tags (e.g., <code>en</code>, <code>grc</code>, <code>es-419</code>, or custom tags). Enter them <em>exactly</em> as shown in FLEx (including case).
             </p>
 
-            <h2>If you already imported with the wrong codes</h2>
+            <h2 data-i18n="wsc.wrongcodes.title">If you already imported with the wrong codes</h2>
             <ol>
-                <li>Open <strong>Tools → Configure → Writing Systems…</strong></li>
-                <li>Remove the unintended/duplicate writing systems FLEx created</li>
-                <li>Re-import using the correct codes</li>
+                <li data-i18n-html="wsc.wrongcodes.li1">Open <strong>Tools → Configure → Writing Systems…</strong></li>
+                <li data-i18n="wsc.wrongcodes.li2">Remove the unintended/duplicate writing systems FLEx created</li>
+                <li data-i18n="wsc.wrongcodes.li3">Re-import using the correct codes</li>
             </ol>
 
-            <h2>Pre-import checklist</h2>
+            <h2 data-i18n="wsc.checklist.title">Pre-import checklist</h2>
             <ul>
-                <li>Vernacular Code matches exactly</li>
-                <li>Gloss/Analysis Code matches exactly</li>
-                <li>Free Translation/Analysis Code matches exactly</li>
-                <li>No stray spaces; case matches</li>
+                <li data-i18n="wsc.checklist.li1">Vernacular Code matches exactly</li>
+                <li data-i18n="wsc.checklist.li2">Gloss/Analysis Code matches exactly</li>
+                <li data-i18n="wsc.checklist.li3">Free Translation/Analysis Code matches exactly</li>
+                <li data-i18n="wsc.checklist.li4">No stray spaces; case matches</li>
             </ul>
 
-            <p><a href="index.html">← Back to Home</a></p>
+            <p data-i18n-html="wsc.backhome"><a href="index.html">← Back to Home</a></p>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>
+            <p data-i18n-html="wsc.footer.text">
                 <strong>FlexText Excel Import</strong> |
                 <a href="https://github.com/rulingAnts/FlexText-Excel-Import" target="_blank">View on GitHub</a>
             </p>
         </div>
     </footer>
+    <script src="i18n.js"></script>
 </body>
 </html>
