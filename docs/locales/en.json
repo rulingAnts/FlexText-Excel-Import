@@ -2,6 +2,10 @@
   "page": {
     "title": "FlexText Excel Import - Easy Interlinear Text Tool"
   },
+  "deprecation": {
+    "message": "<strong>This project is deprecated and no longer maintained.</strong> It has been superseded by <strong>FLExText Editor</strong>.",
+    "button": "Go to FLExText Editor →"
+  },
   "nav": {
     "about": "About",
     "download": "Download",
