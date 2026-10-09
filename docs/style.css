@@ -18,6 +18,45 @@ body {
     padding: 0 20px;
 }
 
+/* Deprecation Banner */
+.deprecation-banner {
+    background-color: #ffc107;
+    color: #212529;
+    border-bottom: 3px solid #e0a800;
+    padding: 16px 0;
+}
+
+.deprecation-banner .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 24px;
+    text-align: center;
+}
+
+.deprecation-banner p {
+    margin: 0;
+    font-size: 1.15em;
+}
+
+.deprecation-button {
+    display: inline-block;
+    background-color: #212529;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.deprecation-button:hover {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+
 /* Header */
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);

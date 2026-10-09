@@ -1,5 +1,8 @@
 # Native-Speaker Excel Transcription/Back-Translation Tool
 
+> [!WARNING]
+> **This project is deprecated and no longer maintained.** It has been superseded by **[FLExText Editor](https://flextext.app/)**.
+
 > 📖 **[Visit the user-friendly website](https://rulingants.github.io/FlexText-Excel-Import/)** for complete documentation, downloads, and tutorials!
 
 ## Overview
